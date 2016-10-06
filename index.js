@@ -1,3 +1,3 @@
-import { user } from "src/vtex-audit"
+import configs from "./src/vtex-audit.json"
 
-console.log(a)
+console.log(configs)
