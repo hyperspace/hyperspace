@@ -4,14 +4,14 @@ A JSON Config file to automatically change apps, directory and files from projec
 
 ### Commands
 
-``sh
+```sh
 # Jump to exist project
 $ project pitch
 $ project workspace
 
 # Start new one with boilerplate
 $ project new presentation
-``
+```
 
 ### Config Template
 
