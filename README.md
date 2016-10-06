@@ -2,6 +2,17 @@
 
 A JSON Config file to automatically change apps, directory and files from project to project for OSX.
 
+### Commands
+
+``sh
+# Jump to exist project
+$ project pitch
+$ project workspace
+
+# Start new one with boilerplate
+$ project new presentation
+``
+
 ### Config Template
 
 ```json
