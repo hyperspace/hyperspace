@@ -1,3 +1,3 @@
-import configs from "./src/vtex-audit.json"
+import configs from './src/vtex-audit.json'
 
 console.log(configs)

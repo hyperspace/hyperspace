@@ -4,8 +4,8 @@
   "description": "A JSON Config file to automatically change apps, directory and files from project to project for OSX.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "babel-node index.js"
+    "test": "eslint index.js",
+    "start": "eslint index.js && babel-node index.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,8 @@
   "devDependencies": {
     "babel-cli": "^6.16.0",
     "babel-core": "^6.17.0",
-    "babel-preset-es2015": "^6.16.0"
+    "babel-eslint": "^7.0.0",
+    "babel-preset-es2015": "^6.16.0",
+    "eslint": "^3.7.1"
   }
 }
