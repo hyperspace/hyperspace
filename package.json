@@ -1,0 +1,19 @@
+{
+  "name": "workspace",
+  "version": "1.0.0",
+  "description": "A JSON Config file to automatically change apps, directory and files from project to project for OSX.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zehfernandes/workspace.git"
+  },
+  "author": "Zeh Fernandes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zehfernandes/workspace/issues"
+  },
+  "homepage": "https://github.com/zehfernandes/workspace#readme"
+}
