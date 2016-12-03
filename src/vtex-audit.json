@@ -5,16 +5,25 @@
     "login": "zehfernandes",
     "email": "ozehfernandes@gmail.com"
   },
-  "open": [
-  	"/Users/zehfernandes/Dropbox/Projects/MOVIEQUOTE/interna.psd",
-  	"/Users/zehfernandes/Dropbox/Projects/MOVIEQUOTE/laber.psd",
-  	"/Users/zehfernandes/Dropbox/docs-Ideas/tasks.md"
-  ],
+  "windows": {
+    "Sublime Text": {
+      "files":[
+        "/Users/zehfernandes/Sites/moviequote/",
+        "/Users/zehfernandes/Sites/dataviz-orderap/"
+      ],
+      "size:": "3000x3000",
+      "space": "3"
+    },
+    "Adobe Photoshop CC": {
+      "files":[
+        "/Users/zehfernandes/Dropbox/Projects/MOVIEQUOTE/interna.psd",
+        "/Users/zehfernandes/Dropbox/Projects/MOVIEQUOTE/laber.psd"
+      ],
+      "size:": "3000x3000",
+      "space": "3"
+    }
+  },
   "desktop": [
-  	"/Users/zehfernandes/Desktop/QUOTE/Screen Shot 2016-08-30 at 11.47.28 PM.png"
-  ],
-  "urls": [
-  	"",
-  	""
+    "/Users/zehfernandes/Desktop/QUOTE/Screen Shot 2016-08-30 at 11.47.28 PM.png"
   ]
 }
