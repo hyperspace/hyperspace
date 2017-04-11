@@ -1,0 +1,31 @@
+{
+  "project": "HyperSpace",
+  "description": "Open projects",
+  "user": {
+    "login": "zehfernandes",
+    "email": "ozehfernandes@gmail.com"
+  },
+  "windows": [
+    {
+      "app": "Sublime Text",
+      "files":[
+        "/Users/zehfernandes/Sites/workspace"
+      ],
+      "position": "left",
+      "space": 1,
+      "display": 1
+    },
+    {
+      "app": "Preview",
+      "files":[
+        "/Users/zehfernandes/Desktop/CrxojUQUkAAIBWN.jpg"
+      ],
+      "position": "full",
+      "space": 0,
+      "display": 1
+    }
+  ],
+  "desktop": [
+    "/Users/zehfernandes/Desktop/QUOTE/Screen Shot 2016-08-30 at 11.47.28 PM.png"
+  ]
+}
