@@ -36,15 +36,16 @@ const openFiles = (file, item) => {
 */
 
 const getPhoenixData = (args) => {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     let appleScript = `tell application "System Events" to keystroke "${args.keystroke}" using {control down, shift down}`
     osascript.execute(appleScript)
 
+    // eslint-disable-next-line
     let child = exec.spawn("log", ['stream', "--style", "json", "--predicate", `eventMessage contains "${args.message}"`, "--info"])
 
     child.stdout.on('data', function (data) {
       const message = JSON.parse(data.toString()).eventMessage
-      const result = args.parse( message.split(":")[1] )
+      const result = args.parse(message.split(':')[1])
       child.kill('SIGKILL')
       resolve(result)
     })
@@ -83,21 +84,20 @@ const positionWaitLoop = () => {
   osascript.execute(appleScript)
 }
 
-getPhoenixData( {
-    message: "DISPLAY", keystroke: "d",
-    parse: (value) => parseInt(value)
-  }
+getPhoenixData({
+  message: 'DISPLAY', keystroke: 'd',
+  parse: (value) => parseInt(value),
+}
 ).then((data) => {
-  console.log("Yay! " + data);
+  console.log('Yay! ' + data)
 })
 
-getPhoenixData(
-  {
-    message: "SPACE", keystroke: "g",
-    parse: (value) => value.replace(/[\[\]']+/g, '').split(',')
-  }
+getPhoenixData({
+  message: 'SPACE', keystroke: 'g',
+  parse: (value) => value.replace(/[[\]']+/g, '').split(','),
+}
 ).then((data) => {
-  console.log("Yay! " + data);
+  console.log('Yay! ' + data)
 })
 
 /*
