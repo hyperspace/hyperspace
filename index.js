@@ -2,7 +2,7 @@ import open from 'open'
 import _ from 'lodash'
 import fs from 'fs'
 import osascript from 'node-osascript'
-import configs from './src/mocks/project-template.json'
+import project from './src/mocks/project-template.json'
 import * as exec from 'child_process'
 
 let loopTimer
@@ -29,6 +29,26 @@ const openFiles = (file, item) => {
   })
 
   return app
+}
+
+/*
+    Get Informations
+*/
+
+const getPhoenixData = (args) => {
+  return new Promise((resolve, reject) => {
+    let appleScript = `tell application "System Events" to keystroke "${args.keystroke}" using {control down, shift down}`
+    osascript.execute(appleScript)
+
+    let child = exec.spawn("log", ['stream', "--style", "json", "--predicate", `eventMessage contains "${args.message}"`, "--info"])
+
+    child.stdout.on('data', function (data) {
+      const message = JSON.parse(data.toString()).eventMessage
+      const result = args.parse( message.split(":")[1] )
+      child.kill('SIGKILL')
+      resolve(result)
+    })
+  })
 }
 
 const writePhoenixObject = (object) => {
@@ -63,11 +83,28 @@ const positionWaitLoop = () => {
   osascript.execute(appleScript)
 }
 
+getPhoenixData( {
+    message: "DISPLAY", keystroke: "d",
+    parse: (value) => parseInt(value)
+  }
+).then((data) => {
+  console.log("Yay! " + data);
+})
+
+getPhoenixData(
+  {
+    message: "SPACE", keystroke: "g",
+    parse: (value) => value.replace(/[\[\]']+/g, '').split(',')
+  }
+).then((data) => {
+  console.log("Yay! " + data);
+})
+
 /*
     Controler
 */
 
-const windows = configs.windows
+const windows = project.windows
 const windowsConfigs = []
 
 windows.forEach((item) => {
