@@ -5,6 +5,10 @@
     "login": "zehfernandes",
     "email": "ozehfernandes@gmail.com"
   },
+  "configs": {
+    "displays" : 2,
+    "spaces": [ 3, 2 ]
+  },
   "windows": [
     {
       "app": "Sublime Text",
