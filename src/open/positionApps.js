@@ -1,5 +1,6 @@
 const osascript = require('node-osascript')
 const exec = require('child_process')
+const {pressShortcut} = require('../phoenixTunnel')
 
 let loopTimer
 
@@ -14,9 +15,7 @@ module.exports = function positionApps(project) {
 }
 
 function setStorage() {
-  let appleScript =
-    'tell application "System Events" to keystroke "s" using {control down, shift down}'
-  osascript.execute(appleScript)
+  pressShortcut('s')
 
   loopTimer = setInterval(positionWaitLoop, 2000)
 

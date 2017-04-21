@@ -1,4 +1,4 @@
-const getPhoenixData = require('../phoenixTunnel')
+const {getPhoenixData} = require('../phoenixTunnel')
 
 module.exports = function adaptProjectToAvailableDisplays(project) {
   console.log('Adapting to available displays')
