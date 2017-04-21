@@ -6,14 +6,17 @@
     "email": "ozehfernandes@gmail.com"
   },
   "configs": {
-    "displays" : 2,
-    "spaces": [ 3, 2 ]
+    "displays": 2,
+    "spaces": [
+      3,
+      2
+    ]
   },
   "windows": [
     {
       "app": "Sublime Text",
-      "files":[
-        "/Users/zehfernandes/Sites/workspace"
+      "files": [
+        "~/Projects/hyperspace/package.json"
       ],
       "position": "left",
       "space": 1,
@@ -21,8 +24,8 @@
     },
     {
       "app": "Preview",
-      "files":[
-        "/Users/zehfernandes/Desktop/CrxojUQUkAAIBWN.jpg"
+      "files": [
+        "~/Desktop/abc.png"
       ],
       "position": "full",
       "space": 0,
@@ -30,6 +33,6 @@
     }
   ],
   "desktop": [
-    "/Users/zehfernandes/Desktop/QUOTE/Screen Shot 2016-08-30 at 11.47.28 PM.png"
+    "~/Desktop/QUOTE/Screen Shot 2016-08-30 at 11.47.28 PM.png"
   ]
 }

@@ -4,6 +4,7 @@ const osascript = require('node-osascript')
 const setup = require('./setup')
 const exec = require('child_process')
 const getHomePath = require('home-path')
+const path = require('path')
 
 const HOME = getHomePath()
 let loopTimer
@@ -34,20 +35,6 @@ const getPhoenixData = args => {
       resolve(result)
     })
   })
-}
-
-const writePhoenixObject = object => {
-  const template = fs.readFileSync('./src/template/appTemp.js', 'utf8')
-  const render = _.template(template)
-  const file = render(object)
-
-  // FIX: Hard-code
-  fs.writeFileSync(HOME + '/.config/phoenix/appTemp.js', file)
-
-  // Time to open windows files (fail safe)
-  setTimeout(function() {
-    setStorage()
-  }, 500)
 }
 
 const setStorage = () => {
@@ -96,7 +83,11 @@ getPhoenixData({
 })
 
 /* Controler */
-setup()
+const project = require('./mocks/project-template.json')
 
-const windowsConfigs = []
-writePhoenixObject({windows: windowsConfigs})
+setup(project)
+
+// Time to open windows files (fail safe)
+setTimeout(function() {
+  setStorage()
+}, 500)

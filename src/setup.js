@@ -1,15 +1,15 @@
 const open = require('open')
 const getHomePath = require('home-path')
+const path = require('path')
+const fs = require('fs')
+const _ = require('lodash')
 const HOME = getHomePath()
 
 module.exports = function setup(project) {
-  if (!project) {
-    project = require('./mocks/project-template.json')
-  }
+  const windows = getProjectWindows(project)
 
-  const toOpen = getProjectWindowsFiles(project)
-
-  toOpen.map(openFile)
+  windows.map(openFile)
+  writePhoenixObject(windows)
 }
 
 function openFile(window) {
@@ -23,7 +23,7 @@ function openFile(window) {
   })
 }
 
-function getProjectWindowsFiles(project) {
+function getProjectWindows(project) {
   return project.windows.reduce((filesToOpen, window) => {
     const windowFiles = getWindowFiles(window)
     return filesToOpen.concat(windowFiles)
@@ -49,4 +49,19 @@ function buildFileObj(window, filePath) {
 
 function replaceHomePath(filePath) {
   return filePath.replace(/^~/, HOME)
+}
+
+const templatePath = path.join(__dirname, 'template', 'appTemp.js.template')
+const appTempPath = path.join(HOME, '.config', 'phoenix', 'appTemp.js')
+
+function writePhoenixObject(windows) {
+  const fileContent = renderAppTempTemplate({windows})
+  fs.writeFileSync(appTempPath, fileContent)
+}
+
+function renderAppTempTemplate(data) {
+  const templateContent = fs.readFileSync(templatePath, 'utf8')
+  const render = _.template(templateContent)
+
+  return render(data)
 }
