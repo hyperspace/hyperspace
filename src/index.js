@@ -1,36 +1,9 @@
 const osascript = require('node-osascript')
 const setup = require('./setup')
 const exec = require('child_process')
+const getPhoenixData = require('./phoenixTunnel.js')
 
 let loopTimer
-
-/*
-    Get Informations
-*/
-
-const getPhoenixData = args => {
-  return new Promise(resolve => {
-    let appleScript = `tell application "System Events" to keystroke "${args.keystroke}" using {control down, shift down}`
-    osascript.execute(appleScript)
-
-    // eslint-disable-next-line
-    let child = exec.spawn('log', [
-      'stream',
-      '--style',
-      'json',
-      '--predicate',
-      `eventMessage contains "hyperspace-${args.message}"`,
-      '--info',
-    ])
-
-    child.stdout.on('data', function(data) {
-      const message = JSON.parse(data.toString()).eventMessage
-      const result = args.parse(message.split(':')[1])
-      child.kill('SIGKILL')
-      resolve(result)
-    })
-  })
-}
 
 const setStorage = () => {
   let appleScript =
@@ -40,7 +13,7 @@ const setStorage = () => {
   loopTimer = setInterval(positionWaitLoop, 2000)
 
   // eslint-disable-next-line
-  let child = exec.spawn('log', [
+  let child = exec.spawn("log", [
     'stream',
     '--style',
     'json',
