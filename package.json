@@ -21,11 +21,13 @@
   },
   "homepage": "https://github.com/zehfernandes/workspace#readme",
   "devDependencies": {
+    "babel-eslint": "^7.2.2",
     "eslint": "^3.7.1",
     "husky": "^0.13.3",
     "lint-staged": "^3.4.0",
     "node-osascript": "^1.0.4",
-    "node-watch": "^0.5.2"
+    "node-watch": "^0.5.2",
+    "prettier-eslint-cli": "^3.4.1"
   },
   "dependencies": {
     "home-path": "^1.0.5",
@@ -35,7 +37,7 @@
   },
   "lint-staged": {
     "*.js": [
-      "prettier --write",
+      "prettier-eslint --write",
       "git add"
     ]
   }
