@@ -1,59 +1,59 @@
-"use strict";
+/* global Phoenix, App, Space, Key */
+'use strict'
 
 Phoenix.set({
-  //daemon: true,
-  openAtLogin: true
-});
+  daemon: true,
+  openAtLogin: true,
+})
 
-//full, top, bottom, left, right, top-right, top-left bottom-right, bottom-left
+// full, top, bottom, left, right, top-right, top-left bottom-right, bottom-left
 function screenPosition(window, sysPosition) {
-   //Check what screen
-   let windowRect = Screen.main().flippedFrame()
+  // Check what screen
+  const windowRect = Screen.main().flippedFrame()
 
-   if( sysPosition.indexOf("top") > -1 ) {
+  if (sysPosition.indexOf('top') > -1) {
     windowRect.height = windowRect.height / 2
-   }
+  }
 
-   if( sysPosition.indexOf("bottom") > -1 ) {
+  if (sysPosition.indexOf('bottom') > -1) {
     windowRect.y = windowRect.height / 2
     windowRect.height = windowRect.height / 2
-   }
+  }
 
-   if( sysPosition.indexOf("left") > -1 ) {
+  if (sysPosition.indexOf('left') > -1) {
     windowRect.width = windowRect.width / 2
-   }
+  }
 
-   if( sysPosition.indexOf("right") > -1 ) {
+  if (sysPosition.indexOf('right') > -1) {
     windowRect.x = windowRect.width / 2
     windowRect.width = windowRect.width / 2
-   }
+  }
 
   window.setFrame(windowRect)
 }
 
 /* Checklog */
 function isDone() {
-  var sysWindows = Storage.get('sysWindows')
-  var allinPosition = []
+  const sysWindows = Storage.get('sysWindows')
+  const allinPosition = []
 
   sysWindows.forEach(function(windowApp, index) {
     const key = `${windowApp.app}-${index}`
     const inPosition = Storage.get(key)
 
     allinPosition.push(inPosition)
+  })
 
-  }, this);
+  var isDone = allinPosition.every(elem => elem === true)
 
-  var isDone = allinPosition.every(elem => elem === true);
-
-  if(isDone) Phoenix.log("DONE")
-};
+  if (isDone) Phoenix.log('hyperspace-DONE')
+}
 
 /* Spaces */
 function moveWindowToTargetSpace(target, windowConfig, key) {
-  const allSpaces 	= Space.all(),
-      pos 			= windowConfig.position,
-      spaceIndex 	= windowConfig.space
+  const allSpaces = Space.all()
+  const pos = windowConfig.position
+  const spaceIndex = windowConfig.space
 
   var targetSpace = allSpaces[spaceIndex]
   var currentSpace = target.spaces()[0]
@@ -64,46 +64,42 @@ function moveWindowToTargetSpace(target, windowConfig, key) {
   screenPosition(target, pos)
 
   Storage.set(key, true)
-};
+}
 
-/* --------
-Binds
--------- */
-
-var bindStorage = new Key('s', [ 'ctrl', 'shift' ], function () {
+/* Binds */
+Key.on('s', ['ctrl', 'shift'], function() {
   require('appTemp.js')
   Phoenix.reload()
 
-  Phoenix.log("storage")
+  Phoenix.log('storage')
 
   Storage.set('sysWindows', sysWindows)
 
   sysWindows.forEach(function(windowApp, index) {
-    //var obj = Object.assign(windowApp, { open: false })
+    // var obj = Object.assign(windowApp, { open: false })
     const key = `${windowApp.app}-${index}`
     Storage.set(key, false)
-  }, this);
+  }, this)
+})
 
-});
+Key.on('d', ['ctrl', 'shift'], function() {
+  var display = Screen.all()
+  Phoenix.log('hyperspace-DISPLAY:' + display.length)
+})
 
-var bindDisplays = new Key('d', [ 'ctrl', 'shift' ], function () {
-    var display = Screen.all()
-    Phoenix.log("DISPLAY:"+display.length)
-});
+Key.on('g', ['ctrl', 'shift'], function() {
+  var displays = Screen.all()
+  var returnObj = []
+  displays.forEach(function(dply) {
+    var spaces = dply.spaces()
+    returnObj.push(spaces.length)
+  }, this)
 
-var bindSpaces = new Key('g', [ 'ctrl', 'shift' ], function () {
-    var displays = Screen.all()
-    var returnObj = []
-    displays.forEach(function(dply, index) {
-        var spaces = dply.spaces()
-        returnObj.push(spaces.length)
-    }, this)
-
-    Phoenix.log("SPACE:"+JSON.stringify(returnObj))
-});
+  Phoenix.log('hyperspace-SPACE:' + JSON.stringify(returnObj))
+})
 
 /* Position */
-var bindPosition = new Key('p', [ 'ctrl', 'shift' ], function () {
+Key.on('p', ['ctrl', 'shift'], function() {
   var sysWindows = Storage.get('sysWindows')
 
   sysWindows.forEach(function(windowApp, index) {
@@ -114,7 +110,7 @@ var bindPosition = new Key('p', [ 'ctrl', 'shift' ], function () {
       return
     }
 
-    Phoenix.log("Status " + JSON.stringify(inPosition))
+    Phoenix.log('Status ' + JSON.stringify(inPosition))
     const app = App.get(windowApp.app)
     Phoenix.log(app.name())
 
@@ -128,7 +124,6 @@ var bindPosition = new Key('p', [ 'ctrl', 'shift' ], function () {
     // To-do: Promisse
     moveWindowToTargetSpace(targetWindow, windowApp, key)
   }, this)
-
 
   isDone()
 })
