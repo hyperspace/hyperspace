@@ -1,5 +1,5 @@
 {
-  "name": "workspace",
+  "name": "hyperspace",
   "version": "1.0.0",
   "description": "A JSON Config file to automatically change apps, directory and files from project to project for OSX.",
   "main": "index.js",
