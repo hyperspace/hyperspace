@@ -1,12 +1,7 @@
-const _ = require('lodash')
-const fs = require('fs')
 const osascript = require('node-osascript')
 const setup = require('./setup')
 const exec = require('child_process')
-const getHomePath = require('home-path')
-const path = require('path')
 
-const HOME = getHomePath()
 let loopTimer
 
 /*
