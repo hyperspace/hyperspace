@@ -6,7 +6,8 @@
   "scripts": {
     "test": "ava",
     "lint": "eslint index.js",
-    "start": "node index.js"
+    "start": "node index.js",
+    "watch": "node watcher.js"
   },
   "repository": {
     "type": "git",
@@ -20,7 +21,8 @@
   "homepage": "https://github.com/zehfernandes/workspace#readme",
   "devDependencies": {
     "eslint": "^3.7.1",
-    "node-osascript": "^1.0.4"
+    "node-osascript": "^1.0.4",
+    "node-watch": "^0.5.2"
   },
   "dependencies": {
     "lodash": "^4.17.2",
