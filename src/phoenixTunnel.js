@@ -18,7 +18,7 @@ module.exports = function getPhoenixData({message, keystroke, parse}) {
 
     child.stdout.on('data', function(data) {
       const message = JSON.parse(data.toString()).eventMessage
-      const result = parse(message.split(':')[1])
+      const result = parse(message.split('||')[1])
       child.kill('SIGKILL')
       resolve(result)
     })
