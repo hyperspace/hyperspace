@@ -6,7 +6,7 @@
   "scripts": {
     "test": "ava",
     "lint": "eslint index.js",
-    "start": "node index.js",
+    "start": "node src/index.js",
     "watch": "node watcher.js",
     "precommit": "lint-staged"
   },
@@ -28,6 +28,7 @@
     "node-watch": "^0.5.2"
   },
   "dependencies": {
+    "home-path": "^1.0.5",
     "lodash": "^4.17.2",
     "open": "0.0.5",
     "prettier": "^1.2.2"
