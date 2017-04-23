@@ -142,20 +142,13 @@ Key.on('p', ['ctrl', 'shift'], onPositionWindows)
 /*
   Get Current ENV
 */
-function cleanStorage() {
-  App.all().forEach(function(app) {
-    Storage.remove(`${app.name()}-register`)
-  })
-}
 
 function registerApp(windowApp) {
-  Storage.set(`${windowApp.app().name()}-register`, true)
-
   return {
     app: windowApp.app().name(),
     position: windowApp.frame(),
     space: getSpaceindex(windowApp.spaces()[0]),
-    display: '2',
+    display: 1, // TODO: Get display index
   }
 }
 
@@ -170,7 +163,7 @@ function getDisplayIndex(currentDisplay) {
 }
 
 function getSpaceindex(currentSpace) {
-  // Check if works in dual monitor
+  // TODO: Check if works in dual monitor
   const allSpaces = Space.all()
 
   for (let i = 0; i <= allSpaces.length; i++) {
@@ -192,47 +185,18 @@ function createConfigObj() {
   }
 }
 
-function createWindowObj() {
+function getSpaceWindows() {
   const windowsObj = []
-  Phoenix.log(JSON.stringify(App.all()))
-  App.all().forEach(function(app) {
-    Phoenix.log(app.name())
+  let space = Screen.main().currentSpace()
 
-    let isRegister = Storage.get(`${app.name()}-register`)
-    if (isRegister) {
-      Phoenix.log('Already')
-      return
-    }
-
-    app.focus()
-
-    let mainWindow = app.mainWindow()
-    if (!mainWindow.isVisible()) return
-    Phoenix.log(mainWindow.app().name())
-
-    Phoenix.log('Register')
-
-    let space = mainWindow.spaces()[0]
-    space.windows().forEach(function(windowApp) {
-      Phoenix.log(windowApp)
-      let obj = registerApp(windowApp)
-      Phoenix.log(obj)
-      windowsObj.push(obj)
-    })
+  space.windows().forEach(function(windowApp) {
+    Phoenix.log(windowApp)
+    let obj = registerApp(windowApp)
+    Phoenix.log(obj)
+    windowsObj.push(obj)
   })
 
-  Phoenix.log(JSON.stringify(windowsObj))
-
-  return windowsObj
+  broadcast('ENV', windowsObj)
 }
 
-function getCurrentHyperSpace() {
-  cleanStorage()
-
-  broadcast('ENV', {
-    config: createConfigObj(),
-    windows: createWindowObj(),
-  })
-}
-
-Key.on('a', ['ctrl', 'shift'], getCurrentHyperSpace)
+Key.on('a', ['ctrl', 'shift'], getSpaceWindows)
