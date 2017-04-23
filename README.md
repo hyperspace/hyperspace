@@ -18,11 +18,13 @@ $ project new presentation
 - [x] Open apps and files
 - [x] Position apps in the OSX desktop
 - [x] Verify if the number of display exist
-- [s] Verify if the number of OSX spaces exist
+- [x] Verify if the number of OSX spaces exist
 - [x] Generate JSON config from current OSX state
 - [ ] Close all apps
-- [ ] Discover open files
+- [ ] Discover app open files
+- [ ] Create API to openers and saves
 - [ ] Generate unique project file
+- [ ] Test in diferent languages
 - [ ] Open Browser URLs
 - [ ] App Name dictionary
 - [ ] Open Terminal and execute scripts
