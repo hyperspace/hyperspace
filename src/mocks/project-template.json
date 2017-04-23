@@ -16,7 +16,7 @@
     {
       "app": "Sublime Text",
       "files": [
-        "~/Projects/hyperspace/package.json"
+        "~/Sites/hyperspace/package.json"
       ],
       "position": "left",
       "space": 1,
@@ -28,7 +28,7 @@
         "~/Desktop/abc.png"
       ],
       "position": "full",
-      "space": 0,
+      "space": 4,
       "display": 1
     }
   ],

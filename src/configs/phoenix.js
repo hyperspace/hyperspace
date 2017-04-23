@@ -104,11 +104,11 @@ function onPositionWindows() {
       return
     }
 
+    Phoenix.log(windowApp.app)
     Phoenix.log('Status ' + JSON.stringify(inPosition))
     const app = App.get(windowApp.app)
 
     if (app === undefined) return
-    Phoenix.log(app.name())
 
     // To-do: Find the right window
     let targetWindow = app.mainWindow()
@@ -124,7 +124,7 @@ function onPositionWindows() {
 function moveWindowToTargetSpace(target, windowConfig, key) {
   const allSpaces = Space.all()
   const pos = windowConfig.position
-  const spaceIndex = windowConfig.space
+  const spaceIndex = windowConfig.space - 1
 
   var targetSpace = allSpaces[spaceIndex]
   var currentSpace = target.spaces()[0]

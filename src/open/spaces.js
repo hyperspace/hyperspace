@@ -37,13 +37,13 @@ function createSpaces(quantity) {
   repeat ${quantity} times
   tell application "System Events" to click of UI element 2 of UI element 2 of UI element 1 of group 1 of process "Dock"
   end repeat
-  delay 1
+  delay 0.1
   tell application "System Events" to key code 53`
 
     osascript.execute(script, err => {
       if (err) reject(err)
 
-      resolve()
+      setTimeout(() => resolve(), 100)
     })
   })
 }
