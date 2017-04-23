@@ -1,18 +1,10 @@
-const {getPhoenixData} = require('../phoenixTunnel')
+const {getNumberOfDisplays} = require('../lib/displays')
 
 module.exports = function adaptProjectToAvailableDisplays(project) {
   console.log('Adapting to available displays')
 
   return getNumberOfDisplays().then(numberOfDisplays => {
     return adaptWindows(project, numberOfDisplays)
-  })
-}
-
-function getNumberOfDisplays() {
-  return getPhoenixData({
-    message: 'DISPLAY',
-    keystroke: 'd',
-    parse: value => parseInt(value),
   })
 }
 

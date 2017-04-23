@@ -1,5 +1,5 @@
-const adaptProjectToAvailableDisplays = require('./displays')
-const createNecessarySpaces = require('./spaces')
+const adaptProjectToAvailableDisplays = require('./adaptDisplays')
+const createNecessarySpaces = require('./adaptSpaces')
 const checkAppsAndFiles = require('./checks')
 const processProjectWindows = require('./projectWindows')
 const openAppsAndFiles = require('./openAppsAndFiles')
