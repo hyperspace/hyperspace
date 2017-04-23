@@ -139,32 +139,99 @@ function moveWindowToTargetSpace(target, windowConfig, key) {
 
 Key.on('p', ['ctrl', 'shift'], onPositionWindows)
 
-function getCurrentHyperSpace() {
+/*
+  Get Current ENV
+*/
+function cleanStorage() {
+  App.all().forEach(function(app) {
+    Storage.remove(`${app.name()}-register`)
+  })
+}
+
+function registerApp(windowApp) {
+  Storage.set(`${windowApp.app().name()}-register`, true)
+
+  return {
+    app: windowApp.app().name(),
+    position: windowApp.frame(),
+    space: getSpaceindex(windowApp.spaces()[0]),
+    display: '2',
+  }
+}
+
+function getDisplayIndex(currentDisplay) {
+  const alldisplays = Screen.all()
+
+  for (let i = 0; i <= alldisplays.length; i++) {
+    if (alldisplays[i].isEqual(currentDisplay)) {
+      return i
+    }
+  }
+}
+
+function getSpaceindex(currentSpace) {
+  // Check if works in dual monitor
+  const allSpaces = Space.all()
+
+  for (let i = 0; i <= allSpaces.length; i++) {
+    if (allSpaces[i].isEqual(currentSpace)) {
+      return i
+    }
+  }
+}
+
+function createConfigObj() {
   let displays = Screen.all()
   let spaces = displays.map(function(d) {
-    return d.spaces()
+    return d.spaces().length
   })
 
-  const config = {
+  return {
     displays: displays.length,
     spaces: spaces,
   }
+}
 
+function createWindowObj() {
   const windowsObj = []
-  displays.map(function(d) {
-    d.windows().forEach(function(windowApp) {
-      windowsObj.push({
-        app: windowApp.app().name(),
-        position: windowApp.frame(),
-        space: windowApp.spaces(),
-        display: windowApp.screen(),
-      })
+  Phoenix.log(JSON.stringify(App.all()))
+  App.all().forEach(function(app) {
+    Phoenix.log(app.name())
+
+    let isRegister = Storage.get(`${app.name()}-register`)
+    if (isRegister) {
+      Phoenix.log('Already')
+      return
+    }
+
+    app.focus()
+
+    let mainWindow = app.mainWindow()
+    if (!mainWindow.isVisible()) return
+    Phoenix.log(mainWindow.app().name())
+
+    Phoenix.log('Register')
+
+    let space = mainWindow.spaces()[0]
+    space.windows().forEach(function(windowApp) {
+      Phoenix.log(windowApp)
+      let obj = registerApp(windowApp)
+      Phoenix.log(obj)
+      windowsObj.push(obj)
     })
   })
 
+  Phoenix.log(JSON.stringify(windowsObj))
+
+  return windowsObj
+}
+
+function getCurrentHyperSpace() {
+  cleanStorage()
+
   broadcast('ENV', {
-    config: config,
-    windows: windowsObj,
+    config: createConfigObj(),
+    windows: createWindowObj(),
   })
 }
 
