@@ -27,7 +27,9 @@ function changeToSpace(display, spaceIndex) {
       tell application "System Events" to click (first button whose value of attribute "AXDescription" is "exit to Desktop ${spaceIndex}") of list 1 of group "Spaces Bar" of group 1 of group "Mission Control" of application process "Dock"`
 
     osascript.execute(script, err => {
-      if (err) reject(err)
+      if (err) {
+        return reject(err)
+      }
 
       setTimeout(() => resolve(), 100)
     })
