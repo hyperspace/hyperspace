@@ -28,7 +28,7 @@ $ project new presentation
 - [ ] Open Browser URLs
 - [ ] App Name dictionary
 - [ ] Open Terminal and execute scripts
-- [ ] Get the open files path
+- [x] Get the open files path
 - [ ] Clear the desktop saving in a _tempfile
 - [ ] Inject the project files
 - [ ] Menu Bar for shorcuts and show current project
