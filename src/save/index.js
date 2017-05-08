@@ -15,6 +15,7 @@ function save() {
       return getAllWindows(numDisplays, numSpaces)
     })
     .then(cleanJSON)
+    .then(getAppFiles)
     .then(generateProjectJson)
     .then(writeProjectFile)
     .catch(error => {
@@ -58,9 +59,25 @@ function getSpaceWindows() {
 
 function cleanJSON(windows) {
   console.log('Clean up JSON format')
-  console.log(windows)
   windows = _.flattenDeep(windows)
   return windows
+}
+
+function getAppFiles(windows) {
+  console.log('Get the app files')
+  let promise = Promise.resolve([])
+
+  for (let i = 0; i < windows.length; i++) {
+    promise = promise.then(() => {
+      const node = windows[i]
+      return pipeSaver(node.app).then(files => {
+        if (files) node.files = files
+        return windows.concat([node])
+      })
+    })
+  }
+
+  return promise
 }
 
 function generateProjectJson(windows) {
