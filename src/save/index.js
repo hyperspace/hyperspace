@@ -7,6 +7,7 @@ const {getNumberOfDisplays} = require('../lib/displays')
 const {getNumberOfSpaces, changeToSpace} = require('../lib/spaces')
 
 function save() {
+  console.log('Start snapshot process')
   Promise.all([getNumberOfSpaces(), getNumberOfDisplays()])
     .then(([numSpaces, numDisplays]) => {
       return getAllWindows(numDisplays, numSpaces)
@@ -19,11 +20,17 @@ function save() {
 }
 
 function getAllWindows(numDisplays, numSpaces) {
+  console.log('Get all windows')
   let promise = Promise.resolve([])
+  let indexDisplay = 1
+  let allSpaces = numSpaces.reduce(function(a, b) {
+    return a + b
+  })
 
-  for (let i = 1; i < numSpaces; i++) {
+  for (let i = 1; i <= allSpaces; i++) {
     promise = promise.then(spacesData => {
-      return getWindowsInSpace(1, i).then(spaceData => {
+      return getWindowsInSpace(indexDisplay, i).then(spaceData => {
+        if (i === numSpaces[indexDisplay - 1]) indexDisplay++
         return spacesData.concat([spaceData])
       })
     })
@@ -47,6 +54,7 @@ function getSpaceWindows() {
 }
 
 function generateProjectJson(windows) {
+  console.log('Generate JSON file')
   return {
     windows: windows.reduce((windows, spaceData) => {
       return windows.concat([spaceData])
@@ -55,6 +63,7 @@ function generateProjectJson(windows) {
 }
 
 function writeProjectFile(projectJson) {
+  console.log('Write project file')
   const projectFilePath = path.join(
     HOME,
     '.config',
@@ -68,6 +77,3 @@ function writeProjectFile(projectJson) {
 save()
 
 module.exports = save
-// get the json
-// save in hyperspace folder
-// use template hehe
