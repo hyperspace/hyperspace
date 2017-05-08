@@ -1,4 +1,15 @@
 const osascript = require('node-osascript')
+const fs = require('fs')
+
+function pipeSaver(appName) {
+  let app = appName.replace(/\s/g, '').toLowerCase()
+  let saverPath = `./save-${app}`
+  if (fs.existsSync(saverPath)) {
+    // Use the specific saver
+  } else {
+    return getAppOpenFiles(appName)
+  }
+}
 
 function getAppOpenFiles(appName) {
   return new Promise(resolve => {
@@ -14,13 +25,13 @@ function getAppOpenFiles(appName) {
     end tell`
     osascript.execute(appleScript, function(err, result, raw) {
       if (err) {
-        console.error(err)
-        return false
+        // console.error(err)
+        resolve(false)
       }
 
-      return result
+      resolve(result)
     })
   })
 }
 
-getAppOpenFiles('Keynote')
+module.exports = pipeSaver

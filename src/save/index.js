@@ -1,10 +1,12 @@
 const {getPhoenixData} = require('../phoenixTunnel.js')
 const getHomePath = require('home-path')
+const {getNumberOfDisplays} = require('../lib/displays')
+const {getNumberOfSpaces, changeToSpace} = require('../lib/spaces')
+const pipeSaver = require('./savers/default.js')
+const _ = require('lodash')
 const path = require('path')
 const fs = require('fs')
 const HOME = getHomePath()
-const {getNumberOfDisplays} = require('../lib/displays')
-const {getNumberOfSpaces, changeToSpace} = require('../lib/spaces')
 
 function save() {
   console.log('Start snapshot process')
@@ -12,6 +14,7 @@ function save() {
     .then(([numSpaces, numDisplays]) => {
       return getAllWindows(numDisplays, numSpaces)
     })
+    .then(cleanJSON)
     .then(generateProjectJson)
     .then(writeProjectFile)
     .catch(error => {
@@ -53,12 +56,17 @@ function getSpaceWindows() {
   })
 }
 
+function cleanJSON(windows) {
+  console.log('Clean up JSON format')
+  console.log(windows)
+  windows = _.flattenDeep(windows)
+  return windows
+}
+
 function generateProjectJson(windows) {
   console.log('Generate JSON file')
   return {
-    windows: windows.reduce((windows, spaceData) => {
-      return windows.concat([spaceData])
-    }, []),
+    windows: windows,
   }
 }
 
