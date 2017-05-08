@@ -14,7 +14,7 @@ function createSpaces(quantity) {
     osascript.execute(script, err => {
       if (err) reject(err)
 
-      setTimeout(() => resolve(), 100)
+      setTimeout(() => resolve(), 300)
     })
   })
 }
