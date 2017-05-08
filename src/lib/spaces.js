@@ -20,18 +20,18 @@ function createSpaces(quantity) {
 }
 
 function changeToSpace(display, spaceIndex) {
-  console.log('Change to space ' + spaceIndex)
+  console.log('Change to space ' + spaceIndex + ' from display ' + display)
   return new Promise((resolve, reject) => {
     const script = `do shell script "open -a 'Mission Control'"
       delay 0.5
-      tell application "System Events" to click (first button whose value of attribute "AXDescription" is "exit to Desktop ${spaceIndex}") of list 1 of group "Spaces Bar" of group 1 of group "Mission Control" of application process "Dock"`
+      tell application "System Events" to click (first button whose value of attribute "AXDescription" is "exit to Desktop ${spaceIndex}") of list 1 of group "Spaces Bar" of group ${display} of group "Mission Control" of application process "Dock"`
 
     osascript.execute(script, err => {
       if (err) {
         return reject(err)
       }
 
-      setTimeout(() => resolve(), 100)
+      setTimeout(() => resolve(), 300)
     })
   })
 }

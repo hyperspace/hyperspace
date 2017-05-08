@@ -144,11 +144,13 @@ Key.on('p', ['ctrl', 'shift'], onPositionWindows)
 */
 
 function registerApp(windowApp) {
+  Phoenix.log(JSON.stringify(windowApp.spaces()[0]))
+  Phoenix.log(getSpaceindex(windowApp.spaces()[0]))
   return {
     app: windowApp.app().name(),
     position: windowApp.frame(),
     space: getSpaceindex(windowApp.spaces()[0]),
-    display: 1, // TODO: Get display index
+    display: getDisplayIndex(windowApp.screen()),
   }
 }
 
@@ -157,18 +159,17 @@ function getDisplayIndex(currentDisplay) {
 
   for (let i = 0; i <= alldisplays.length; i++) {
     if (alldisplays[i].isEqual(currentDisplay)) {
-      return i
+      return i + 1
     }
   }
 }
 
 function getSpaceindex(currentSpace) {
-  // TODO: Check if works in dual monitor
   const allSpaces = Space.all()
 
   for (let i = 0; i <= allSpaces.length; i++) {
     if (allSpaces[i].isEqual(currentSpace)) {
-      return i
+      return i + 1
     }
   }
 }
@@ -190,9 +191,8 @@ function getSpaceWindows() {
   let space = Screen.main().currentSpace()
 
   space.windows().forEach(function(windowApp) {
-    Phoenix.log(windowApp)
     let obj = registerApp(windowApp)
-    Phoenix.log(obj)
+    Phoenix.log(JSON.stringify(obj))
     windowsObj.push(obj)
   })
 
