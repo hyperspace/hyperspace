@@ -1,6 +1,3 @@
-// for
-// return array files
-
 const osascript = require('node-osascript')
 
 function getAppOpenFiles(appName) {
