@@ -1,11 +1,27 @@
+// for
+// return array files
+
 const osascript = require('node-osascript')
 
 function getAppOpenFiles(appName) {
   return new Promise(resolve => {
-    const appleScript = `tell application "${appName}" to return file of document 1`
-
+    const appleScript = `tell application "${appName}"
+	    set docFiles to file of documents
+	    set fileArray to {}
+	    repeat with t in docFiles
+		    if t is not in {{}, {""}, "", missing value} then
+			    set the |fileArray| to the |fileArray| & POSIX path of t
+		    end if
+	    end repeat
+	    return fileArray
+    end tell`
     osascript.execute(appleScript, function(err, result, raw) {
-      console.log(result)
+      if (err) {
+        console.error(err)
+        return false
+      }
+
+      return result
     })
   })
 }
