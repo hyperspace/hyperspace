@@ -3,12 +3,12 @@ const fs = require('fs')
 
 function pipeSaver(appName) {
   let app = appName.replace(/\s/g, '').toLowerCase()
-  let saverPath = `./save-${app}`
+  let saverPath = `${__dirname}/save-${app}.js`
   if (fs.existsSync(saverPath)) {
-    // Use the specific saver
-  } else {
-    return getAppOpenFiles(appName)
+    const saver = require(saverPath)
+    return saver()
   }
+  return getAppOpenFiles(appName)
 }
 
 function getAppOpenFiles(appName) {
