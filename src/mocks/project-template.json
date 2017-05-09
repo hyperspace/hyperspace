@@ -32,6 +32,12 @@
       "display": 2
     }
   ],
+  "keepApps": [
+    "Slack",
+    "Firefox",
+    "Visual Studio Code",
+    "iTerm2"
+  ],
   "desktop": [
     "~/Desktop/QUOTE/Screen Shot 2016-08-30 at 11.47.28 PM.png"
   ]
