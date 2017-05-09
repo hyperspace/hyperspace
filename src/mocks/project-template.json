@@ -19,8 +19,8 @@
         "~/Sites/hyperspace/package.json"
       ],
       "position": "left",
-      "space": 1,
-      "display": 1
+      "space": 5,
+      "display": 2
     },
     {
       "app": "Preview",

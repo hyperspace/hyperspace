@@ -7,9 +7,13 @@ Phoenix.set({
 })
 
 // full, top, bottom, left, right, top-right, top-left bottom-right, bottom-left
-function screenPosition(window, sysPosition) {
-  // Check what screen
-  const windowRect = Screen.main().flippedFrame()
+function screenPosition(window, sysPosition, display) {
+  const screens = Screen.all()
+  let goToScreen = screens[display - 1]
+
+  if (goToScreen === undefined) goToScreen = Screen.main()
+
+  const windowRect = goToScreen.flippedFrame()
 
   if (sysPosition.indexOf('top') > -1) {
     windowRect.height = windowRect.height / 2
@@ -124,6 +128,7 @@ function onPositionWindows() {
 function moveWindowToTargetSpace(target, windowConfig, key) {
   const allSpaces = Space.all()
   const pos = windowConfig.position
+  const display = windowConfig.display
   const spaceIndex = windowConfig.space - 1
 
   var targetSpace = allSpaces[spaceIndex]
@@ -132,7 +137,7 @@ function moveWindowToTargetSpace(target, windowConfig, key) {
   currentSpace.removeWindows([target])
   targetSpace.addWindows([target])
 
-  screenPosition(target, pos)
+  screenPosition(target, pos, display)
 
   Storage.set(key, true)
 }
