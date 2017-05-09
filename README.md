@@ -20,15 +20,15 @@ $ project new presentation
 - [x] Verify if the number of display exist
 - [x] Verify if the number of OSX spaces exist
 - [x] Generate JSON config from current OSX state
-- [ ] Close all apps
-- [ ] Discover app open files
+- [x] Close all apps
+- [x] Discover app open files
+- [x] Get the open files path
 - [ ] Create API to openers and saves
 - [ ] Generate unique project file
 - [ ] Test in diferent languages
 - [ ] Open Browser URLs
 - [ ] App Name dictionary
 - [ ] Open Terminal and execute scripts
-- [x] Get the open files path
 - [ ] Clear the desktop saving in a _tempfile
 - [ ] Inject the project files
 - [ ] Menu Bar for shorcuts and show current project
