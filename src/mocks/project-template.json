@@ -14,9 +14,10 @@
   },
   "windows": [
     {
-      "app": "Sublime Text",
+      "app": "Sublime Texta",
       "files": [
-        "~/Sites/hyperspace/package.json"
+        "~/Sites/hyperspace/package.json",
+        "~/Sites/hyperspace/README.md"
       ],
       "position": "left",
       "space": 5,

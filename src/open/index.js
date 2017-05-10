@@ -13,9 +13,9 @@ module.exports = function open(project) {
 
   return adaptProjectToAvailableDisplays(project)
     .then(createNecessarySpaces)
+    .then(processProjectWindows)
     .then(checkAppsAndFiles)
     .then(closeApps)
-    .then(processProjectWindows)
     .then(openAppsAndFiles)
     .then(writePhoenixProjectFile)
     .then(cleanUp)
