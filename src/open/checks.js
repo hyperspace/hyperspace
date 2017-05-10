@@ -8,8 +8,9 @@ module.exports = function checkAppsAndFiles(project) {
 
 function checkApps(project) {
   project.windowsFormatted.map(obj => {
-    const appPath = `/Applications/${obj.name}.app`
-    if (!fs.existsSync(appPath)) {
+    const appPath = `/Applications/${obj.name}`
+    const appFile = `/Applications/${obj.name}.app`
+    if (!fs.existsSync(appPath) && !fs.existsSync(appFile)) {
       console.log(`The App "${appPath}" doesn't exist`)
       process.exit()
       return
