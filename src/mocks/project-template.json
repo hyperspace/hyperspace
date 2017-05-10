@@ -14,7 +14,7 @@
   },
   "windows": [
     {
-      "app": "Sublime Texta",
+      "app": "Sublime Text",
       "files": [
         "~/Sites/hyperspace/package.json",
         "~/Sites/hyperspace/README.md"
@@ -31,6 +31,15 @@
       "position": "full",
       "space": 4,
       "display": 2
+    },
+    {
+      "app": "Preview",
+      "files": [
+        "~/Desktop/2.8_status_numero_voo_resultado.png"
+      ],
+      "position": "right-top",
+      "space": 2,
+      "display": 1
     }
   ],
   "keepApps": [
