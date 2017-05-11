@@ -20,8 +20,8 @@ function stringPosition(window, sysPosition, display) {
   }
 
   if (sysPosition.indexOf('bottom') > -1) {
-    windowRect.y = windowRect.height / 2
     windowRect.height = windowRect.height / 2
+    windowRect.y = windowRect.height / 2
   }
 
   if (sysPosition.indexOf('left') > -1) {
@@ -29,8 +29,8 @@ function stringPosition(window, sysPosition, display) {
   }
 
   if (sysPosition.indexOf('right') > -1) {
-    windowRect.x = windowRect.width / 2
     windowRect.width = windowRect.width / 2
+    windowRect.x = windowRect.width / 2
   }
 
   window.setFrame(windowRect)
@@ -101,6 +101,14 @@ function onGetNumberOfSpacesPerDisplay() {
 
 Key.on('g', ['ctrl', 'shift'], onGetNumberOfSpacesPerDisplay)
 
+function findTheVisible(windows) {
+  for (var i = 0, len = windows.length; i < len; i++) {
+    if (windows[i].isVisible()) {
+      return windows[i]
+    }
+  }
+}
+
 /* Position */
 function onPositionWindows() {
   var sysWindows = Storage.get('sysWindows')
@@ -118,7 +126,7 @@ function onPositionWindows() {
     const app = App.get(windowApp.app)
 
     if (app === undefined) return
-    let targetWindow = app.windows()[0]
+    let targetWindow = findTheVisible(app.windows())
 
     if (targetWindow === undefined) return
 
