@@ -25,7 +25,7 @@ function buildFileObj(window, filePath) {
   return {
     file: replaceHomePath(filePath),
     name: window.app,
-    pos: window.position,
+    pos: JSON.stringify(window.position),
     space: window.space,
     display: window.display,
   }

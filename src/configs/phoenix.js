@@ -7,7 +7,8 @@ Phoenix.set({
 })
 
 // full, top, bottom, left, right, top-right, top-left bottom-right, bottom-left
-function screenPosition(window, sysPosition, display) {
+function stringPosition(window, sysPosition, display) {
+  Phoenix.log('stringPosition')
   const screens = Screen.all()
   let goToScreen = screens[display - 1]
 
@@ -34,6 +35,11 @@ function screenPosition(window, sysPosition, display) {
   }
 
   window.setFrame(windowRect)
+}
+
+function objPosition(window, sysPosition, display) {
+  Phoenix.log('objPosition')
+  window.setFrame(sysPosition)
 }
 
 /* Checklog */
@@ -150,7 +156,11 @@ function moveWindowToTargetSpace(target, windowConfig, key) {
   currentSpace.removeWindows([target])
   targetSpace.addWindows([target])
 
-  screenPosition(target, pos, display)
+  if (typeof pos === 'object') {
+    objPosition(target, pos, display)
+  } else {
+    stringPosition(target, pos, display)
+  }
 
   Storage.set(key, true)
 }

@@ -37,8 +37,13 @@
       "files": [
         "~/Desktop/2.8_status_numero_voo_resultado.png"
       ],
-      "position": "right-top",
-      "space": 2,
+      "position": {
+        "y": 23,
+        "x": 222,
+        "width": 1218,
+        "height": 873
+      },
+      "space": 3,
       "display": 1
     }
   ],
