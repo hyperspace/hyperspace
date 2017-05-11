@@ -10,7 +10,7 @@ const appTempPath = path.join(HOME, '.config', 'phoenix', 'appTemp.js')
 module.exports = function writePhoenixProjectFile(project) {
   console.log('Writing Phoenix file')
   const fileContent = renderAppTempTemplate({
-    windows: project.windowsFormatted.reverse(),
+    windows: project.windowsFormatted,
   })
   fs.writeFileSync(appTempPath, fileContent)
 

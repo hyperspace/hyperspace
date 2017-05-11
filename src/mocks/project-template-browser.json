@@ -1,0 +1,33 @@
+{
+  "project": "Browser Open Test",
+  "description": "Open projects",
+  "user": {
+    "login": "zehfernandes",
+    "email": "ozehfernandes@gmail.com"
+  },
+  "configs": {
+    "displays": 2,
+    "spaces": [
+      3,
+      2
+    ]
+  },
+  "windows": [
+    {
+      "app": "Google Chrome",
+      "urls": [
+        "https://www.noisli.com/",
+        "https://medium.com/information-architecture/medium-7ddf2ad4bc3"
+      ],
+      "position": "right",
+      "space": 4,
+      "display": 2
+    }
+  ],
+  "keepApps": [
+    "Slack",
+    "Firefox",
+    "Visual Studio Code",
+    "iTerm2"
+  ]
+}

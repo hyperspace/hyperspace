@@ -8,7 +8,7 @@ module.exports = function positionApps(project) {
   setTimeout(function() {
     console.log('Positioning apps')
     setStorage()
-  }, 350 * project.windowsFormatted.length) // Not sure
+  }, 500 * project.windowsFormatted.length) // Not sure
 
   return project
 }

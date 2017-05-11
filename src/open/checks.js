@@ -22,7 +22,7 @@ function checkApps(project) {
 
 function checkFiles(project) {
   project.windowsFormatted.map(obj => {
-    if (!fs.existsSync(obj.file)) {
+    if (!fs.existsSync(obj.file) && obj.file) {
       console.log(`The file "${obj.file}" doesn't exist`)
       process.exit()
       return
