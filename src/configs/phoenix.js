@@ -68,9 +68,7 @@ function onStoreWindows() {
 
   sysWindows.forEach(function(windowApp, index) {
     const key = `${windowApp.app}-${index}`
-    const countKey = `${windowApp.app}-count`
     Storage.set(key, false)
-    Storage.set(countKey, false)
   })
 }
 
@@ -111,30 +109,18 @@ function onPositionWindows() {
     const key = `${windowApp.app}-${index}`
     const inPosition = Storage.get(key)
 
-    const countKey = `${windowApp.app}-count`
-    let count = Storage.get(countKey) ? Storage.get(countKey) : 0
-
     if (inPosition) {
       return
     }
 
     Phoenix.log(`${windowApp.app}-${index}`)
-    Phoenix.log('Status ' + JSON.stringify(inPosition))
+    // Phoenix.log('Status ' + JSON.stringify(inPosition))
     const app = App.get(windowApp.app)
 
     if (app === undefined) return
-
-    Phoenix.log('Count:' + count)
-    let targetWindow
-
-    if (app.windows().length > 0) {
-      targetWindow = app.windows()[count]
-    } else {
-      targetWindow = app.mainWindow()
-    }
+    let targetWindow = app.windows()[0]
 
     if (targetWindow === undefined) return
-    Storage.set(countKey, count + 1)
 
     // To-do: Promise
     moveWindowToTargetSpace(targetWindow, windowApp, key)

@@ -5,11 +5,10 @@ const {pressShortcut} = require('../phoenixTunnel')
 let loopTimer
 
 module.exports = function positionApps(project) {
-  console.log('Positioning apps')
-
   setTimeout(function() {
+    console.log('Positioning apps')
     setStorage()
-  }, 500)
+  }, 350 * project.windowsFormatted.length) // Not sure
 
   return project
 }
