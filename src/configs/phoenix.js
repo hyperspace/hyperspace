@@ -118,7 +118,7 @@ function onPositionWindows() {
       return
     }
 
-    Phoenix.log(windowApp.app)
+    Phoenix.log(`${windowApp.app}-${index}`)
     Phoenix.log('Status ' + JSON.stringify(inPosition))
     const app = App.get(windowApp.app)
 
@@ -155,8 +155,6 @@ function moveWindowToTargetSpace(target, windowConfig, key) {
   currentSpace.removeWindows([target])
   targetSpace.addWindows([target])
 
-  Phoenix.log(pos)
-  Phoenix.log(typeof pos === 'object')
   if (typeof pos === 'object') {
     objPosition(target, pos, display)
   } else {
