@@ -13,7 +13,7 @@ $ project workspace
 $ project new presentation
 ```
 
-### Roadmap
+### Roadmap v0.8
 
 - [x] Open apps and files
 - [x] Position apps in the OSX desktop
@@ -23,15 +23,23 @@ $ project new presentation
 - [x] Close all apps
 - [x] Discover app open files
 - [x] Get the open files path
-- [ ] Create API to openers and saves
+- [x] Open Browser URLs
 - [ ] Generate unique project file
-- [ ] Test in diferent languages
-- [ ] Open Browser URLs
+- [ ] Test in other macOS configurations
+- [ ] CLI
+
+### Roadmap v1.0
+
+- [ ] Create API to openers and saves
+- [ ] Open Terminal and execute script
+- [ ] Create global configs
+- [ ] Fix bugs
+- [ ] Electron UI
+- [ ] Landing page
+
+### Brainstorming
+
 - [ ] App Name dictionary
-- [ ] Open Terminal and execute scripts
 - [ ] Clear the desktop saving in a _tempfile
 - [ ] Inject the project files
-- [ ] Menu Bar for shorcuts and show current project
 - [ ] Storage everthing in the cloud
-
-...a lot of things.
