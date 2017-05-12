@@ -6,7 +6,7 @@
   "scripts": {
     "test": "ava",
     "lint": "eslint index.js",
-    "start": "node src/index.js",
+    "start": "./src/configs/setup.sh && node src/index.js",
     "watch": "node watcher.js",
     "precommit": "lint-staged"
   },
