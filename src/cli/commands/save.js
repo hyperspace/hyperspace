@@ -7,7 +7,6 @@ module.exports = {
   description: 'Save a project',
   optionalArgs: 'projectName',
   handler(projectName) {
-    console.log(projectName)
     if (projectName) {
       return save(projectName)
     }
@@ -27,7 +26,10 @@ function createOrOverwrite() {
     message: 'Save project',
     choices: function() {
       return [
-        { name: chalk.green('+ Create new project'), value: 'new' },
+        {
+          name: chalk.bgGreen(chalk.black('+ Create new project')),
+          value: 'new',
+        },
         new inquirer.Separator('or overwrite:'),
         ...getAllProjects().map(project => project.replace('.js', '')),
       ]
