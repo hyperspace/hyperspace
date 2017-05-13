@@ -7,7 +7,7 @@ const writeProjectFile = require('./writeProject')
 
 function save(projectName) {
   console.log('Start snapshot process')
-  Promise.all([getNumberOfSpaces(), getNumberOfDisplays()])
+  return Promise.all([getNumberOfSpaces(), getNumberOfDisplays()])
     .then(([numSpaces, numDisplays]) => {
       return getAllWindows(numDisplays, numSpaces)
     })
