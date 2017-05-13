@@ -12,8 +12,9 @@ function checkApps(project) {
     const appPath = path.join('/', 'Applications', obj.name)
     const appFile = path.join('/', 'Applications', `${obj.name}.app`)
 
-    if (!fs.existsSync(appPath) && !fs.existsSync(appFile)) {
-      console.log(`The App "${appPath}" doesn't exist`)
+    const appExists = fs.existsSync(appPath) || fs.existsSync(appFile)
+    if (appExists === false) {
+      console.log(`The app "${appPath}" doesn't exist`)
       process.exit()
       return
     }
@@ -24,7 +25,8 @@ function checkApps(project) {
 
 function checkFiles(project) {
   project.windowsFormatted.map(obj => {
-    if (!fs.existsSync(obj.file) && obj.file) {
+    const fileExists = obj.file && fs.existsSync(obj.file)
+    if (fileExists === false) {
       console.log(`The file "${obj.file}" doesn't exist`)
       process.exit()
       return
