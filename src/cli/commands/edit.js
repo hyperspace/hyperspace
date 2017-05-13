@@ -7,9 +7,8 @@ module.exports = {
   description: 'Edit a project',
   optionalArgs: 'projectName',
   handler(projectName) {
-    console.log(projectName)
     if (projectName) {
-      return editFile(projectName)
+      return editFile({ project: projectName })
     }
 
     return askWhatProject()
@@ -30,5 +29,7 @@ function getListofProjects() {
 }
 
 function editFile(res) {
-  open(`${projectsDirPath}/${res.project}.js`)
+  return new Promise(function(resolve, reject) {
+    open(`${projectsDirPath}/${res.project}.js`)
+  })
 }
