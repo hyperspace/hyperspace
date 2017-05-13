@@ -7,7 +7,7 @@ module.exports = function writeProjectFile(projectName) {
 
   return projectJson => {
     console.log(`Write project file ${projectName}`)
-    const projectFilePath = path.join(projectsDirPath, `${projectName}.js`)
+    const projectFilePath = path.join(projectsDirPath, `${projectName}.json`)
 
     fs.writeFileSync(projectFilePath, JSON.stringify(projectJson))
   }
@@ -36,5 +36,5 @@ function getNonConflictingName(projectBaseName) {
 }
 
 function projectAlreadyExist(projectName) {
-  return fs.existsSync(path.join(projectsDirPath, `${projectName}.js`))
+  return fs.existsSync(path.join(projectsDirPath, `${projectName}.json`))
 }

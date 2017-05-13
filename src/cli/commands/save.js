@@ -23,7 +23,7 @@ function createOrOverwrite() {
   return inquirer.prompt({
     type: 'list',
     name: 'project',
-    message: 'Save project',
+    message: chalk.bold('Save project'),
     choices: function() {
       return [
         {
@@ -31,7 +31,7 @@ function createOrOverwrite() {
           value: 'new',
         },
         new inquirer.Separator('or overwrite:'),
-        ...getAllProjects().map(project => project.replace('.js', '')),
+        ...getAllProjects().map(project => project.replace('.json', '')),
       ]
     },
   })
