@@ -31,14 +31,18 @@
     "prettier-eslint-cli": "^3.4.1"
   },
   "dependencies": {
+    "chalk": "^1.1.3",
+    "findhelp": "^0.3.0",
     "home-path": "^1.0.5",
+    "inquirer": "^3.0.6",
     "lodash": "^4.17.2",
+    "minimist": "^1.2.0",
     "open": "0.0.5",
     "prettier": "^1.2.2"
   },
   "lint-staged": {
     "*.js": [
-      "prettier-eslint --write",
+      "prettier-eslint --prettier.bracketSpacing true --write",
       "git add"
     ]
   }
