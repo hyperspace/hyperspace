@@ -1,14 +1,11 @@
 const {getPhoenixData} = require('../phoenixTunnel.js')
-const getHomePath = require('home-path')
 const {getNumberOfDisplays} = require('../lib/displays')
 const {getNumberOfSpaces, changeToSpace} = require('../lib/spaces')
 const pipeSaver = require('./savers/default.js')
-const _ = require('lodash')
-const path = require('path')
-const fs = require('fs')
-const HOME = getHomePath()
+const flattenDeep = require('lodash/flattenDeep')
+const writeProjectFile = require('./writeProject')
 
-function save() {
+function save(projectName) {
   console.log('Start snapshot process')
   Promise.all([getNumberOfSpaces(), getNumberOfDisplays()])
     .then(([numSpaces, numDisplays]) => {
@@ -17,7 +14,7 @@ function save() {
     .then(cleanJSON)
     .then(getAppFiles)
     .then(generateProjectJson)
-    .then(writeProjectFile)
+    .then(writeProjectFile(projectName))
     .catch(error => {
       console.error(error)
     })
@@ -59,8 +56,7 @@ function getSpaceWindows() {
 
 function cleanJSON(windows) {
   console.log('Clean up JSON format')
-  windows = _.flattenDeep(windows)
-  return windows
+  return flattenDeep(windows)
 }
 
 function getAppFiles(windows) {
@@ -82,21 +78,7 @@ function getAppFiles(windows) {
 
 function generateProjectJson(windows) {
   console.log('Generate JSON file')
-  return {
-    windows: windows,
-  }
-}
-
-function writeProjectFile(projectJson) {
-  console.log('Write project file')
-  const projectFilePath = path.join(
-    HOME,
-    '.config',
-    'hyperspace',
-    'project-template.js'
-  )
-
-  fs.writeFileSync(projectFilePath, JSON.stringify(projectJson))
+  return {windows}
 }
 
 save()
