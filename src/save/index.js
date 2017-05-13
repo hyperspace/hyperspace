@@ -1,6 +1,6 @@
-const {getPhoenixData} = require('../phoenixTunnel.js')
-const {getNumberOfDisplays} = require('../lib/displays')
-const {getNumberOfSpaces, changeToSpace} = require('../lib/spaces')
+const { getPhoenixData } = require('../phoenixTunnel.js')
+const { getNumberOfDisplays } = require('../lib/displays')
+const { getNumberOfSpaces, changeToSpace } = require('../lib/spaces')
 const pipeSaver = require('./savers/default.js')
 const flattenDeep = require('lodash/flattenDeep')
 const writeProjectFile = require('./writeProject')
@@ -78,9 +78,7 @@ function getAppFiles(windows) {
 
 function generateProjectJson(windows) {
   console.log('Generate JSON file')
-  return {windows}
+  return { windows }
 }
-
-save()
 
 module.exports = save

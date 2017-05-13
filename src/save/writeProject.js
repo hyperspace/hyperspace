@@ -1,9 +1,6 @@
 const path = require('path')
-const getHomePath = require('home-path')
-const HOME = getHomePath()
 const fs = require('fs')
-
-const projectsDirPath = path.join(HOME, '.config', 'hyperspace')
+const { projectsDirPath } = require('../lib/projects')
 
 module.exports = function writeProjectFile(projectName) {
   projectName = getProjectName(projectName)
