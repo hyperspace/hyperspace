@@ -23,7 +23,7 @@ function getListofProjects() {
   return inquirer.prompt({
     type: 'list',
     name: 'project',
-    message: 'Edit project',
+    message: chalk.bold('Edit project'),
     choices: getAllProjects().map(project => project.replace('.js', '')),
   })
 }
