@@ -93,7 +93,7 @@ function writeProjectFile(projectJson) {
     HOME,
     '.config',
     'hyperspace',
-    'project-template.js',
+    'project-template.js'
   )
 
   fs.writeFileSync(projectFilePath, JSON.stringify(projectJson))

@@ -92,7 +92,11 @@ function onGetNumberOfSpacesPerDisplay() {
   const displays = Screen.all()
 
   const returnObj = displays.map(function(display) {
-    let spaces = display.spaces()
+    let spaces = display.spaces().filter(function(s) {
+      if (s.isNormal()) {
+        return s
+      }
+    })
     return spaces.length
   })
 
