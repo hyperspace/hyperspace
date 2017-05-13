@@ -1,4 +1,5 @@
 const fs = require('fs')
+const path = require('path')
 
 module.exports = function checkAppsAndFiles(project) {
   console.log('Checking existing apps and files')
@@ -8,8 +9,9 @@ module.exports = function checkAppsAndFiles(project) {
 
 function checkApps(project) {
   project.windowsFormatted.map(obj => {
-    const appPath = `/Applications/${obj.name}`
-    const appFile = `/Applications/${obj.name}.app`
+    const appPath = path.join('/', 'Applications', obj.name)
+    const appFile = path.join('/', 'Applications', `${obj.name}.app`)
+
     if (!fs.existsSync(appPath) && !fs.existsSync(appFile)) {
       console.log(`The App "${appPath}" doesn't exist`)
       process.exit()

@@ -1,9 +1,11 @@
 const open = require('open')
 const fs = require('fs')
+const path = require('path')
 
 module.exports = function pipeOpener(window) {
-  let app = window.name.replace(/\s/g, '').toLowerCase()
-  let openerPath = `${__dirname}/open-${app}.js`
+  const app = window.name.replace(/\s/g, '').toLowerCase()
+  const openerPath = path.join(__dirname, `open-${app}.js`)
+
   if (fs.existsSync(openerPath)) {
     const opener = require(openerPath)
     return opener(window)
