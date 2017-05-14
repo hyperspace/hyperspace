@@ -24,9 +24,9 @@ $ project new presentation
 - [x] Discover app open files
 - [x] Get the open files path
 - [x] Open Browser URLs
-- [ ] Generate unique project file
-- [ ] Test in other macOS configurations
+- [x] Generate unique project file
 - [ ] CLI
+- [ ] Test in other macOS configurations
 
 ### Roadmap v1.0
 
