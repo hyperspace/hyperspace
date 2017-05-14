@@ -24,12 +24,12 @@ function getListofProjects() {
     type: 'list',
     name: 'project',
     message: chalk.bold('Edit project'),
-    choices: getAllProjects().map(project => project.replace('.js', '')),
+    choices: getAllProjects().map(project => project.replace('.json', '')),
   })
 }
 
 function editFile(res) {
   return new Promise(function(resolve, reject) {
-    open(`${projectsDirPath}/${res.project}.js`)
+    open(`${projectsDirPath}/${res.project}.json`)
   })
 }
