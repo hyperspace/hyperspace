@@ -39,15 +39,22 @@ function createOrOverwrite() {
 
 function getProjectName({ project }) {
   if (project === 'new') {
-    return inquirer.prompt({
-      type: 'input',
-      name: 'name',
-      message: 'Type the project name',
-    })
+    return inquirer.prompt([
+      {
+        type: 'input',
+        name: 'name',
+        message: 'Type the project name',
+      },
+      {
+        type: 'input',
+        name: 'description',
+        message: 'Type the project description',
+      },
+    ])
   }
   return { name: project }
 }
 
-function saveProject({ name }) {
-  return save(name)
+function saveProject({ name, description }) {
+  return save(name, description)
 }

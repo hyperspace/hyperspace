@@ -5,7 +5,7 @@ const pipeSaver = require('./savers/default.js')
 const flattenDeep = require('lodash/flattenDeep')
 const writeProjectFile = require('./writeProject')
 
-function save(projectName) {
+function save(projectName, description) {
   console.log('Start snapshot process')
   return Promise.all([getNumberOfSpaces(), getNumberOfDisplays()])
     .then(([numSpaces, numDisplays]) => {
@@ -14,7 +14,7 @@ function save(projectName) {
     .then(cleanJSON)
     .then(getAppFiles)
     .then(generateProjectJson)
-    .then(writeProjectFile(projectName))
+    .then(writeProjectFile(projectName, description))
     .catch(error => {
       console.error(error)
     })

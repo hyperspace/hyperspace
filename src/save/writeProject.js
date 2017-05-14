@@ -2,14 +2,20 @@ const path = require('path')
 const fs = require('fs')
 const { projectsDirPath } = require('../lib/projects')
 
-module.exports = function writeProjectFile(projectName) {
+module.exports = function writeProjectFile(projectName, description) {
   projectName = getProjectName(projectName)
 
   return projectJson => {
     console.log(`Write project file ${projectName}`)
     const projectFilePath = path.join(projectsDirPath, `${projectName}.json`)
 
-    fs.writeFileSync(projectFilePath, JSON.stringify(projectJson))
+    projectJson = {
+      project: projectName,
+      description: description,
+      windows: projectJson.windows,
+    }
+
+    fs.writeFileSync(projectFilePath, JSON.stringify(projectJson, null, 2))
   }
 }
 
