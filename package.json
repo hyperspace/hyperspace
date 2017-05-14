@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "A JSON Config file to automatically change apps, directory and files from project to project for OSX.",
   "main": "index.js",
+  "bin": {
+    "hyperspace": "src/cli/index.js",
+    "hyps": "src/cli/index.js"
+  },
   "scripts": {
     "test": "ava",
     "lint": "eslint index.js",
@@ -14,7 +18,7 @@
     "type": "git",
     "url": "git+https://github.com/zehfernandes/workspace.git"
   },
-  "author": "Zeh Fernandes",
+  "author": "Zeh Fernandes and Breno Calazans",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/zehfernandes/workspace/issues"
