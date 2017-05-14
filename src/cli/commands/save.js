@@ -1,5 +1,7 @@
 const inquirer = require('inquirer')
 const chalk = require('chalk')
+const exec = require('child_process').exec
+const path = require('path')
 const { getAllProjects } = require('../../lib/projects')
 const save = require('../../save/index')
 
@@ -56,5 +58,9 @@ function getProjectName({ project }) {
 }
 
 function saveProject({ name, description }) {
-  return save(name, description)
+  const setupPath = path.dirname(require.main.filename).replace('/cli', '')
+  exec(`${setupPath}/configs/setup.sh`, function(error, stdout, stderr) {
+    console.log(stdout)
+    save(name, description)
+  })
 }

@@ -1,5 +1,6 @@
 const path = require('path')
 const fs = require('fs')
+const osascript = require('node-osascript')
 const { projectsDirPath } = require('../lib/projects')
 
 module.exports = function writeProjectFile(projectName, description) {
@@ -16,6 +17,9 @@ module.exports = function writeProjectFile(projectName, description) {
     }
 
     fs.writeFileSync(projectFilePath, JSON.stringify(projectJson, null, 2))
+
+    let appleScript = 'quit application "Phoenix"'
+    osascript.execute(appleScript)
   }
 }
 

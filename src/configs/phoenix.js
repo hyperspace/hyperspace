@@ -3,7 +3,7 @@
 
 Phoenix.set({
   daemon: false,
-  openAtLogin: true,
+  openAtLogin: false,
 })
 
 // full, top, bottom, left, right, top-right, top-left bottom-right, bottom-left

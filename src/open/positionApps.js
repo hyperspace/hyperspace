@@ -1,6 +1,6 @@
 const osascript = require('node-osascript')
 const exec = require('child_process')
-const {pressShortcut} = require('../phoenixTunnel')
+const { pressShortcut } = require('../phoenixTunnel')
 
 let loopTimer
 
@@ -30,6 +30,8 @@ function setStorage() {
 
   child.stdout.on('data', function() {
     clearInterval(loopTimer)
+    let appleScript = 'quit application "Phoenix"'
+    osascript.execute(appleScript)
     child.kill('SIGKILL')
   })
 }
