@@ -3,6 +3,7 @@ const sysWindows = [
     {
         app: '<%= object.name %>',
         position: <%= object.pos %>,
+        <% if(object.bundleIdentifier) { %>bundleIdentifier: '<%= object.bundleIdentifier %>', <% } %>
         space: <%= object.space %>,
         display: <%= object.display %>
     },

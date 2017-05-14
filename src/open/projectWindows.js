@@ -33,6 +33,7 @@ function buildFileObj(window, filePath) {
   // SHAME BRENO MADE ME DO THIS
   if (filePath) obj.file = replaceHomePath(filePath)
   if (window.urls) obj.urls = window.urls
+  if (window.bundleIdentifier) obj.bundleIdentifier = window.bundleIdentifier
 
   return obj
 }

@@ -41,6 +41,20 @@ function objPosition(window, sysPosition, display) {
   window.setFrame(sysPosition)
 }
 
+function getApp(obj) {
+  let targetApp = App.get(obj.app)
+  if (targetApp === undefined && obj.bundleIdentifier) {
+    let all = App.all()
+    all.forEach(function(app) {
+      if (app.bundleIdentifier() === obj.bundleIdentifier) {
+        targetApp = app
+      }
+    })
+  }
+
+  return targetApp
+}
+
 /* Checklog */
 function isDone() {
   const sysWindows = Storage.get('sysWindows')
@@ -127,7 +141,7 @@ function onPositionWindows() {
 
     Phoenix.log(`${windowApp.app}-${index}`)
     // Phoenix.log('Status ' + JSON.stringify(inPosition))
-    const app = App.get(windowApp.app)
+    const app = getApp(windowApp)
 
     if (app === undefined) return
     let targetWindow = findTheVisible(app.windows())
@@ -173,6 +187,7 @@ function registerApp(windowApp) {
   Phoenix.log(getSpaceindex(windowApp.spaces()[0]))
   return {
     app: windowApp.app().name(),
+    bundleIdentifier: windowApp.app().bundleIdentifier(),
     position: windowApp.frame(),
     space: getSpaceindex(windowApp.spaces()[0]),
     display: getDisplayIndex(windowApp.screen()),
@@ -216,12 +231,37 @@ function getSpaceWindows() {
   let space = Screen.main().currentSpace()
 
   space.windows().forEach(function(windowApp) {
-    let obj = registerApp(windowApp)
-    Phoenix.log(JSON.stringify(obj))
-    windowsObj.push(obj)
+    if (windowApp.isNormal()) {
+      let obj = registerApp(windowApp)
+      Phoenix.log(JSON.stringify(obj))
+      windowsObj.push(obj)
+    }
   })
 
   broadcast('ENV', windowsObj)
 }
 
 Key.on('a', ['ctrl', 'shift'], getSpaceWindows)
+
+/*
+function u() {
+  const windowsObj = []
+  let space = Screen.main().currentSpace()
+
+  space.windows().forEach(function(windowApp) {
+    Phoenix.log(windowApp.app().bundleIdentifier())
+  })
+}
+
+Key.on('u', ['ctrl', 'shift'], u)
+
+function v() {
+  let all = App.all('pro.writer.mac')
+  all.forEach(function(app) {
+    let rightOne = app.bundleIdentifier() === "pro.writer.mac" ? app : null
+    Phoenix.log(rightOne)
+  })
+}
+
+Key.on('v', ['ctrl', 'shift'], v)
+*/

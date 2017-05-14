@@ -2,6 +2,7 @@ const osascript = require('node-osascript')
 
 module.exports = function closeApps(project) {
   console.log('Closing apps')
+  // TODO: close all windows before close the app
   const whiteList = `"${project.keepApps.join('","')}"`
   return new Promise(resolve => {
     const appleScript = `tell application "System Events" to set the visible of every process to true
@@ -15,6 +16,10 @@ module.exports = function closeApps(project) {
       set this_process to item i of the process_list
       if this_process is not in white_list then
         tell application this_process
+          try
+            close (every window)
+            delay 0.5
+          end try
           quit
         end tell
       end if
@@ -29,7 +34,7 @@ module.exports = function closeApps(project) {
         return
       }
 
-      resolve(project)
+      setTimeout(() => resolve(project), 200)
     })
   })
 }

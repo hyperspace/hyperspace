@@ -1,4 +1,5 @@
 const open = require('open')
+const exec = require('child_process').exec
 const fs = require('fs')
 const path = require('path')
 
@@ -11,10 +12,15 @@ module.exports = function pipeOpener(window) {
     return opener(window)
   }
 
+  if (window.file) {
+    return fileOpen(window)
+  }
+
   return defaultOpen(window)
 }
 
-function defaultOpen(window) {
+function fileOpen(window) {
+  let app = window.appPath ? window.appPath : window.name
   open(window.file, window.name, error => {
     if (error) {
       let msg = error.toString().split('\n')
@@ -23,4 +29,20 @@ function defaultOpen(window) {
       return
     }
   })
+}
+
+function defaultOpen(window) {
+  let cmd
+
+  if (window.appPath) {
+    cmd = `open "${window.appPath}"`
+  } else {
+    cmd = `open -a "${window.name}"`
+  }
+
+  exec(cmd, function(error, stdout, stderr) {
+    // command output is in stdout
+  })
+
+  return
 }
