@@ -9,6 +9,7 @@ function getAllProjects() {
   return fs
     .readdirSync(projectsDirPath)
     .filter(file => file.indexOf('.DS_Store') === -1)
+    .filter(file => file.indexOf('configs.json') === -1)
 }
 
 module.exports = {

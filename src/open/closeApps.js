@@ -1,9 +1,14 @@
+const fs = require('fs')
+const path = require('path')
+const getHomePath = require('home-path')
 const osascript = require('node-osascript')
+
+const HOME = getHomePath()
 
 module.exports = function closeApps(project) {
   console.log('Closing apps')
-  // TODO: close all windows before close the app
-  const whiteList = `"${project.keepApps.join('","')}"`
+  let whiteList = getWhiteList(project)
+
   return new Promise(resolve => {
     const appleScript = `tell application "System Events" to set the visible of every process to true
 
@@ -37,4 +42,14 @@ module.exports = function closeApps(project) {
       setTimeout(() => resolve(project), 200)
     })
   })
+}
+
+function getWhiteList(project) {
+  let whiteList = ''
+  const configs = require(`${HOME}/.config/hyperspace/configs.json`)
+
+  if (configs.keepApps) whiteList = `"${configs.keepApps.join('","')}"`
+  if (project.keepApps) whiteList = `"${project.keepApps.join('","')}"`
+
+  return whiteList
 }
