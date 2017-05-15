@@ -1,12 +1,12 @@
 const inquirer = require('inquirer')
 const chalk = require('chalk')
-const exec = require('child_process').exec
+const spawn = require('child_process').spawn
 const path = require('path')
 const { getAllProjects } = require('../../lib/projects')
 const save = require('../../save/index')
 
 module.exports = {
-  description: 'Save a project',
+  description: 'Save your current workspace',
   optionalArgs: 'projectName',
   handler(projectName) {
     if (projectName) {
@@ -59,8 +59,13 @@ function getProjectName({ project }) {
 
 function saveProject({ name, description }) {
   const setupPath = path.dirname(require.main.filename).replace('/cli', '')
-  exec(`${setupPath}/configs/setup.sh`, function(error, stdout, stderr) {
-    console.log(stdout)
+  const exec = spawn(`${setupPath}/configs/setup.sh`)
+
+  exec.stdout.on('data', function(data) {
+    console.log(data.toString())
+  })
+
+  exec.on('exit', function() {
     save(name, description)
   })
 }

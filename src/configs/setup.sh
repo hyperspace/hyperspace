@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 FILE=/Applications/Phoenix.app
-path=${PWD}
+ABSPATH=$(cd "$(dirname "$0")"; pwd)
+echo $ABSPATH
 
 if [ ! -d $FILE ]
 then
@@ -10,29 +11,37 @@ then
     wait
 fi
 
-if [ ! -d ~/.config/phoenix/ ]
+if [ ! -d $HOME/.config/phoenix/ ]
 then
-  echo "Creating config files"
-  mkdir ~/.config/phoenix/
+  echo "Creating config folder"
+  mkdir $HOME/.config/phoenix/
 fi
 
-if [ ! -d ~/.config/hyperspace/ ]
+if [ ! -d $HOME/.config/hyperspace/ ]
 then
-  mkdir ~/.config/hyperspace/
+  mkdir $HOME/.config/hyperspace/
 fi
 
-if [ ! -f ~/.config/hyperspace/configs.json ]
+if [ ! -f $HOME/.config/hyperspace/configs.json ]
 then
-  cp $path/src/configs/configs.json ~/.config/hyperspace/configs.json
+  echo "Create hyperspace config file"
+  cp $ABSPATH/configs.json $HOME/.config/hyperspace/configs.json
 fi
 
 wait
 
-cp $path/src/configs/phoenix.js ~/.config/phoenix/phoenix.js
+echo "Setup phoenix lib"
+osascript -e 'quit application "Phoenix"'
+wait
+if [ -f $HOME/.phoenix.js ]
+then
+  rm $HOME/.phoenix.js
+fi
+cp $ABSPATH/phoenix.js $HOME/.config/phoenix/phoenix.js
 
 wait
 
 echo "Open Phoenix.app"
 open /Applications/Phoenix.app
-
-
+sleep 1
+wait

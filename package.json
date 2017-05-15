@@ -1,6 +1,6 @@
 {
   "name": "hyperspace-cli",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A JSON Config file to automatically change apps, directory and files from project to project for OSX.",
   "main": "index.js",
   "bin": {

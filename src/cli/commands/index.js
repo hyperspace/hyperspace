@@ -1,6 +1,6 @@
 const config = require('./config')
 const current = require('./current')
-const deleteCommand = require('./delete')
+const remove = require('./delete')
 const edit = require('./edit')
 const list = require('./list')
 const open = require('./open')
@@ -10,7 +10,7 @@ const save = require('./save')
 module.exports = {
   config,
   current,
-  deleteCommand,
+  remove,
   edit,
   list,
   open,

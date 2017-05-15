@@ -1,7 +1,7 @@
 const inquirer = require('inquirer')
 const chalk = require('chalk')
 const open = require('../../open/index')
-const exec = require('child_process').exec
+const spawn = require('child_process').spawn
 const path = require('path')
 const { projectsDirPath, getAllProjects } = require('../../lib/projects')
 
@@ -42,11 +42,16 @@ function openProject(res) {
       filePath = res
     }
 
-    project = require(filePath)
+    let project = require(filePath)
 
     const setupPath = path.dirname(require.main.filename).replace('/cli', '')
-    exec(`${setupPath}/configs/setup.sh`, function(error, stdout, stderr) {
-      console.log(stdout)
+    const exec = spawn(`${setupPath}/configs/setup.sh`)
+
+    exec.stdout.on('data', function(data) {
+      console.log(data.toString())
+    })
+
+    exec.on('exit', function() {
       open(project)
     })
   })
