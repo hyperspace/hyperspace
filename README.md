@@ -1,16 +1,46 @@
-# [WIP] Hyperspace
+# Hyperspace
 
 A JSON Config file to automatically change apps, directory and files from project to project for OSX.
 
 ### Commands
 
 ```sh
-# Jump to exist project
-$ project pitch
-$ project workspace
+Usage: hyperspace-cli <command> [options]
 
-# Start new one with boilerplate
-$ project new presentation
+Commands:
+
+  deleteCommand [projectName]Delete a project
+  edit [projectName]       Edit a project
+  open [projectName]       Open a project
+  save [projectName]       Save a project
+
+Options:
+
+  -h, --help  show help information
+```
+
+### JSON file
+
+
+```
+{
+  "project": "HyperSpace",
+  "description": "Open projects",
+  "windows": [
+    {
+      "app": "",
+      "files": [
+        "~/file"
+      ],
+      "position": "left",
+      "space": 5,
+      "display": 2
+    }
+  ],
+  "keepApps": [
+    "Slack"
+  ]
+}
 ```
 
 ### Roadmap v0.8
@@ -25,7 +55,7 @@ $ project new presentation
 - [x] Get the open files path
 - [x] Open Browser URLs
 - [x] Generate unique project file
-- [ ] CLI
+- [x] CLI
 - [ ] Test in other macOS configurations
 
 ### Roadmap v1.0

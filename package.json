@@ -1,6 +1,6 @@
 {
-  "name": "hyperspace",
-  "version": "1.0.0",
+  "name": "hyperspace-cli",
+  "version": "1.0.2",
   "description": "A JSON Config file to automatically change apps, directory and files from project to project for OSX.",
   "main": "index.js",
   "bin": {
@@ -16,21 +16,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zehfernandes/workspace.git"
+    "url": "git+https://github.com/zehfernandes/hyperspace.git"
   },
   "author": "Zeh Fernandes and Breno Calazans",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/zehfernandes/workspace/issues"
+    "url": "https://github.com/zehfernandes/hyperspace/issues"
   },
-  "homepage": "https://github.com/zehfernandes/workspace#readme",
+  "homepage": "https://github.com/zehfernandes/hyperspace#readme",
   "devDependencies": {
     "babel-eslint": "^7.2.2",
     "eslint": "^3.7.1",
     "husky": "^0.13.3",
     "jest": "^19.0.2",
     "lint-staged": "^3.4.0",
-    "node-osascript": "^1.0.4",
     "node-watch": "^0.5.2",
     "prettier-eslint-cli": "^3.4.1"
   },
@@ -42,7 +41,8 @@
     "lodash": "^4.17.2",
     "minimist": "^1.2.0",
     "open": "0.0.5",
-    "prettier": "^1.2.2"
+    "prettier": "^1.2.2",
+    "node-osascript": "^1.0.4"
   },
   "lint-staged": {
     "*.js": [

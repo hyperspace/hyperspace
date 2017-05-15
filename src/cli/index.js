@@ -1,3 +1,5 @@
+#! /usr/bin/env node
+
 const { help, find, run } = require('findhelp')
 const minimist = require('minimist')
 const pkg = require('../../package.json')
@@ -32,7 +34,7 @@ function greeting() {
 }
 
 const checkCommandExists = found =>
-  (!found.command ? Promise.reject({ name: 'CommandNotFound' }) : found)
+  !found.command ? Promise.reject({ name: 'CommandNotFound' }) : found
 
 Promise.resolve(find(tree, process.argv.slice(2), minimist))
   .then(checkCommandExists)
