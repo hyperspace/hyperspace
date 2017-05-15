@@ -6,9 +6,11 @@ const flattenDeep = require('lodash/flattenDeep')
 const writeProjectFile = require('./writeProject')
 
 function save(projectName, description) {
-  console.log('Start snapshot process')
+  console.log('Start snapshot process...')
+
   return Promise.all([getNumberOfSpaces(), getNumberOfDisplays()])
     .then(([numSpaces, numDisplays]) => {
+      console.log(numDisplays)
       return getAllWindows(numDisplays, numSpaces)
     })
     .then(cleanJSON)
@@ -28,10 +30,14 @@ function getAllWindows(numDisplays, numSpaces) {
     return a + b
   })
 
+  let changeDisplay = numSpaces[0]
   for (let i = 1; i <= allSpaces; i++) {
     promise = promise.then(spacesData => {
       return getWindowsInSpace(indexDisplay, i).then(spaceData => {
-        if (i === numSpaces[indexDisplay - 1]) indexDisplay++
+        if (i === changeDisplay) {
+          indexDisplay++
+          changeDisplay = changeDisplay + numSpaces[indexDisplay - 1]
+        }
         return spacesData.concat([spaceData])
       })
     })
