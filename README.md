@@ -2,6 +2,12 @@
 
 A JSON Config file to automatically change apps, directory and files from project to project for OSX.
 
+### Install
+
+```sh
+npm i -g hyperspace-cli
+```
+
 ### Commands
 
 ```sh
@@ -21,14 +27,13 @@ Options:
 
 ### JSON file
 
-
 ```
 {
   "project": "HyperSpace",
   "description": "Open projects",
   "windows": [
     {
-      "app": "",
+      "app": "App Name",
       "files": [
         "~/file"
       ],
