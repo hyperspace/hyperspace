@@ -1,5 +1,6 @@
 const osascript = require('node-osascript')
-const {getPhoenixData} = require('../phoenixTunnel')
+const { getPhoenixData } = require('../phoenixTunnel')
+const chalk = require('chalk')
 
 function createSpaces(quantity) {
   return new Promise((resolve, reject) => {
@@ -12,7 +13,20 @@ function createSpaces(quantity) {
   tell application "System Events" to key code 53`
 
     osascript.execute(script, err => {
-      if (err) reject(err)
+      if (err) {
+        if (err.toString().includes('(-1728)')) {
+          console.log(chalk.red.bold('\nYou need allow accessibility access'))
+          console.log(
+            'Go to System Preferences > Security & Privacy > Privacy > Accessibility'
+          )
+          console.log('And check your terminal app and the Phoenix.app')
+
+          osascript.execute('tell application "System Events" to key code 53')
+          process.exit()
+        }
+
+        return reject(err)
+      }
 
       setTimeout(() => resolve(), 300)
     })
@@ -28,6 +42,17 @@ function changeToSpace(display, spaceIndex) {
 
     osascript.execute(script, err => {
       if (err) {
+        if (err.toString().includes('(-1728)')) {
+          console.log(chalk.red.bold('\nYou need allow accessibility access'))
+          console.log(
+            'Go to System Preferences > Security & Privacy > Privacy > Accessibility'
+          )
+          console.log('And check your terminal app and the Phoenix.app')
+
+          osascript.execute('tell application "System Events" to key code 53')
+          process.exit()
+        }
+
         return reject(err)
       }
 
