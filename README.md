@@ -11,41 +11,46 @@ npm i -g hyperspace-cli
 ### Commands
 
 ```sh
-Usage: hyperspace-cli <command> [options]
+  Welcome to hyperspace 💫
+  Travel fast through your galaxy of projects
 
-Commands:
+  Usage: hyperspace <command> [options]
 
-  deleteCommand [projectName]Delete a project
-  edit [projectName]       Edit a project
-  open [projectName]       Open a project
-  save [projectName]       Save a project
+  Commands:
 
-Options:
+    remove [projectName]     Remove the project of your destination panel
+    new [projectName]        Create new project from scratch
+    edit [projectName]       Edit a project coordinators
+    open [projectName]       Travel to your project
+    save [projectName]       Save your current open files and apps
 
-  -h, --help  show help information
+  Options:
+
+    -h, --help  show help information
 ```
 
 ### JSON file
 
 ```
 {
-  "project": "HyperSpace",
-  "description": "Open projects",
+  "project": "Template Name",
+  "description": "Description to help you find yourself",
   "windows": [
     {
       "app": "App Name",
       "files": [
-        "~/file"
+        "~/list-of-files"
       ],
       "position": "left",
-      "space": 5,
-      "display": 2
+      "space": 1,
+      "display": 1
     }
   ],
   "keepApps": [
-    "Slack"
+    "List of apps you don't want to close where travel to the project"
   ]
 }
+
 ```
 
 ### Roadmap v0.8
