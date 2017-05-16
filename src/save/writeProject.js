@@ -10,12 +10,13 @@ module.exports = function writeProjectFile(projectName, description) {
     const projectFilePath = path.join(projectsDirPath, `${projectName}.json`)
     console.log(`Write project file ${projectFilePath}`)
 
+    // prettier-ignore
     const jsonFile = Object.assign(
       {
         project: projectName,
         description: description,
       },
-      projectJson,
+      projectJson
     )
 
     fs.writeFileSync(projectFilePath, JSON.stringify(jsonFile, null, 2))
