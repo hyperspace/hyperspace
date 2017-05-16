@@ -70,10 +70,9 @@ function getAppFiles(windows) {
 
   for (let i = 0; i < windows.length; i++) {
     promise = promise.then(() => {
-      const node = windows[i]
-      return pipeSaver(node.app).then(files => {
-        if (files) node.files = files
-        return windows.concat([node])
+      return pipeSaver(windows[i].app).then(files => {
+        if (files) windows[i] = Object.assign(windows[i], files)
+        return windows
       })
     })
   }
