@@ -1,6 +1,7 @@
 const config = require('./config')
 const current = require('./current')
 const remove = require('./delete')
+const newest = require('./new')
 const edit = require('./edit')
 const list = require('./list')
 const open = require('./open')
@@ -11,6 +12,7 @@ module.exports = {
   config,
   current,
   remove,
+  new: newest,
   edit,
   list,
   open,

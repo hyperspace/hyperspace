@@ -10,7 +10,6 @@ function save(projectName, description) {
 
   return Promise.all([getNumberOfSpaces(), getNumberOfDisplays()])
     .then(([numSpaces, numDisplays]) => {
-      console.log(numDisplays)
       return getAllWindows(numDisplays, numSpaces)
     })
     .then(cleanJSON)

@@ -1,0 +1,18 @@
+{
+  "project": "Template Name",
+  "description": "Description to help you find yourself",
+  "windows": [
+    {
+      "app": "App Name",
+      "files": [
+        "~/list-of-files"
+      ],
+      "position": "left",
+      "space": 1,
+      "display": 1
+    }
+  ],
+  "keepApps": [
+    "List of apps you don't want to close where init the project"
+  ]
+}

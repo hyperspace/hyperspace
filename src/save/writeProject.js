@@ -7,19 +7,23 @@ module.exports = function writeProjectFile(projectName, description) {
   projectName = getProjectName(projectName)
 
   return projectJson => {
-    console.log(`Write project file ${projectName}`)
     const projectFilePath = path.join(projectsDirPath, `${projectName}.json`)
+    console.log(`Write project file ${projectFilePath}`)
 
-    projectJson = {
-      project: projectName,
-      description: description,
-      windows: projectJson.windows,
-    }
+    const jsonFile = Object.assign(
+      {
+        project: projectName,
+        description: description,
+      },
+      projectJson,
+    )
 
-    fs.writeFileSync(projectFilePath, JSON.stringify(projectJson, null, 2))
+    fs.writeFileSync(projectFilePath, JSON.stringify(jsonFile, null, 2))
 
     let appleScript = 'quit application "Phoenix"'
     osascript.execute(appleScript)
+
+    return Promise.resolve(projectFilePath)
   }
 }
 
