@@ -6,7 +6,7 @@ const path = require('path')
 const { projectsDirPath, getAllProjects } = require('../../lib/projects')
 
 module.exports = {
-  description: 'Open a project',
+  description: 'Travel to your project',
   optionalArgs: 'projectName',
   handler(projectName) {
     if (projectName) {
@@ -26,15 +26,15 @@ function askWhatProject() {
 }
 
 function getListofProjects() {
+  console.log('') // Format
   return inquirer.prompt({
     type: 'list',
     name: 'project',
-    message: chalk.bold('What project do you want to travel?'),
+    message: chalk.bold('Choose your next destination 💫:'),
     choices: getAllProjects().map(project => project.replace('.json', '')),
   })
 }
 
-// execFile: executes a file with the specified arguments
 function openProject(res) {
   return new Promise(function(resolve, reject) {
     let filePath = `${projectsDirPath}/${res.project}.json`

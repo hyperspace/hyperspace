@@ -4,7 +4,7 @@ const fs = require('fs')
 const { projectsDirPath, getAllProjects } = require('../../lib/projects')
 
 module.exports = {
-  description: 'Delete a project',
+  description: 'Remove the project of your destination panel',
   optionalArgs: 'projectName',
   handler(projectName) {
     if (projectName) {
@@ -20,10 +20,11 @@ function askWhatProject() {
 }
 
 function getListofProjects() {
+  console.log('') // Format
   return inquirer.prompt({
     type: 'list',
     name: 'project',
-    message: chalk.bold('Delete project'),
+    message: chalk.bold('Remove your project from the destination panel'),
     choices: getAllProjects().map(project => project.replace('.json', '')),
   })
 }

@@ -18,6 +18,7 @@ let tree = Object.assign({}, commands, {
 })
 
 tree.handler = function rootHandler(options) {
+  pkg.name = 'hyperspace' // hard-code :()
   if (options.h || options.help) {
     console.log(help(tree, pkg))
   } else if (options.v || options.version) {
@@ -30,11 +31,14 @@ tree.handler = function rootHandler(options) {
 }
 
 function greeting() {
-  return [`Welcome to ${chalk.blue('hyperspace')}`]
+  return [
+    `\n  ${chalk.bold('Welcome to')} ${chalk.bold.blue('hyperspace')} 💫
+    \r  Travel fast through your galaxy of projects`,
+  ]
 }
 
 const checkCommandExists = found =>
-  !found.command ? Promise.reject({ name: 'CommandNotFound' }) : found
+  (!found.command ? Promise.reject({ name: 'CommandNotFound' }) : found)
 
 Promise.resolve(find(tree, process.argv.slice(2), minimist))
   .then(checkCommandExists)

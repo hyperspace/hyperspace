@@ -6,7 +6,7 @@ const { getAllProjects } = require('../../lib/projects')
 const save = require('../../save/index')
 
 module.exports = {
-  description: 'Save your current workspace',
+  description: 'Save your current open files and apps',
   optionalArgs: 'projectName',
   handler(projectName) {
     if (projectName) {
@@ -22,14 +22,15 @@ function askProjectName() {
 }
 
 function createOrOverwrite() {
+  console.log('') // Format
   return inquirer.prompt({
     type: 'list',
     name: 'project',
-    message: chalk.bold('Save project'),
+    message: chalk.bold('Save your current open files and apps'),
     choices: function() {
       return [
         {
-          name: chalk.bgGreen(chalk.black('+ Create new project')),
+          name: chalk.green('+ Create new project'),
           value: 'new',
         },
         new inquirer.Separator('or overwrite:'),
@@ -45,12 +46,12 @@ function getProjectName({ project }) {
       {
         type: 'input',
         name: 'name',
-        message: 'Type the project name',
+        message: '🌟  Type the project name',
       },
       {
         type: 'input',
         name: 'description',
-        message: 'Type the project description',
+        message: '✏️  Type the project description (be poetic)',
       },
     ])
   }

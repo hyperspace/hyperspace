@@ -4,7 +4,7 @@ const open = require('open')
 const { projectsDirPath, getAllProjects } = require('../../lib/projects')
 
 module.exports = {
-  description: 'Edit a project',
+  description: 'Edit a project coordinators',
   optionalArgs: 'projectName',
   handler(projectName) {
     if (projectName) {
@@ -20,10 +20,11 @@ function askWhatProject() {
 }
 
 function getListofProjects() {
+  console.log('') // Format
   return inquirer.prompt({
     type: 'list',
     name: 'project',
-    message: chalk.bold('Edit project'),
+    message: chalk.bold('Edit your destinations'),
     choices: getAllProjects().map(project => project.replace('.json', '')),
   })
 }

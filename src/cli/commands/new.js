@@ -5,7 +5,7 @@ const writeProjectFile = require('../../save/writeProject')
 const projectTemplate = require('../../configs/template-project.json')
 
 module.exports = {
-  description: 'New project',
+  description: 'Create new project from scratch',
   optionalArgs: 'projectName',
   handler(projectName) {
     if (projectName) {
@@ -21,16 +21,17 @@ function askProjectName() {
 }
 
 function getProjectDetails() {
+  console.log('') // Format
   return inquirer.prompt([
     {
       type: 'input',
       name: 'name',
-      message: 'Type the project name',
+      message: '🌟  Type the project name',
     },
     {
       type: 'input',
       name: 'description',
-      message: 'Type the project description',
+      message: '📃  Type the project description (be poetic)',
     },
   ])
 }
