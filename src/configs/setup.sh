@@ -2,7 +2,6 @@
 
 FILE=/Applications/Phoenix.app
 ABSPATH=$(cd "$(dirname "$0")"; pwd)
-echo $ABSPATH
 
 if [ ! -d $FILE ]
 then
