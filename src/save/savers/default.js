@@ -29,7 +29,7 @@ function getAppOpenFiles(appName) {
         resolve(false)
       }
 
-      resolve(result)
+      resolve({ files: result })
     })
   })
 }
