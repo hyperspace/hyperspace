@@ -3,6 +3,7 @@ const { getPhoenixData } = require('../phoenixTunnel')
 const chalk = require('chalk')
 
 function createSpaces(quantity) {
+  // TODO: Discover what display
   return new Promise((resolve, reject) => {
     const script = `do shell script "open -a 'Mission Control'"
   delay 0.5
@@ -17,7 +18,7 @@ function createSpaces(quantity) {
         if (err.toString().includes('(-1728)')) {
           console.log(chalk.red.bold('\nYou need allow accessibility access'))
           console.log(
-            'Go to System Preferences > Security & Privacy > Privacy > Accessibility'
+            'Go to System Preferences > Security & Privacy > Privacy > Accessibility',
           )
           console.log('And check your terminal app and the Phoenix.app')
 
@@ -45,7 +46,7 @@ function changeToSpace(display, spaceIndex) {
         if (err.toString().includes('(-1728)')) {
           console.log(chalk.red.bold('\nYou need allow accessibility access'))
           console.log(
-            'Go to System Preferences > Security & Privacy > Privacy > Accessibility'
+            'Go to System Preferences > Security & Privacy > Privacy > Accessibility',
           )
           console.log('And check your terminal app and the Phoenix.app')
 
