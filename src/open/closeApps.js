@@ -6,6 +6,7 @@ const osascript = require('node-osascript')
 const HOME = getHomePath()
 
 module.exports = function closeApps(project) {
+  console.log(project)
   console.log('Closing apps')
   let whiteList = getWhiteList(project)
 
@@ -14,22 +15,22 @@ module.exports = function closeApps(project) {
 
     set white_list to {${whiteList}}
 
-    tell application "Finder"
+    tell application "System Events"
       set process_list to the name of every process whose visible is true
-    end tell
-    repeat with i from 1 to (number of items in process_list)
-      set this_process to item i of the process_list
-      if this_process is not in white_list then
-        tell application this_process
+
+      repeat with i from 1 to (number of items in process_list)
+        set this_process to item i of the process_list
+        if this_process is not in white_list then
           try
-            close (every window)
+            set ThePID to unix id of process this_process
+            do shell script "kill -KILL " & ThePID
             delay 0.5
           end try
-          quit
-        end tell
-      end if
-    end repeat
-    delay 0.5
+        end if
+      end repeat
+      delay 0.5
+    end tell
+
     tell application "Finder" to activate
     `
 
