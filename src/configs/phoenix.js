@@ -8,8 +8,8 @@ Phoenix.set({
 
 // full, top, bottom, left, right, top-right, top-left bottom-right, bottom-left
 function stringPosition(window, sysPosition, display) {
-  const screens = Screen.all()
-  let goToScreen = screens[display - 1]
+  // const screens = Screen.all()
+  let goToScreen = window.scren()
 
   if (goToScreen === undefined) goToScreen = Screen.main()
 
@@ -36,8 +36,25 @@ function stringPosition(window, sysPosition, display) {
   window.setFrame(windowRect)
 }
 
-function objPosition(window, sysPosition, display) {
+function objPosition(window, sysPosition) {
   // TODO: avoid ghost window
+  const display = window.screen()
+  const windowRect = display.flippedFrame()
+
+  Phoenix.log(JSON.stringify(windowRect))
+  Phoenix.log(JSON.stringify(sysPosition))
+
+  if (sysPosition.x < windowRect.x || sysPosition.x > windowRect.width) {
+    sysPosition.x = windowRect.x
+  }
+  if (sysPosition.y < windowRect.y || sysPosition.y > windowRect.height) {
+    sysPosition.y = windowRect.y
+  }
+  sysPosition.width = Math.min(sysPosition.width, windowRect.width)
+  sysPosition.height = Math.min(sysPosition.height, windowRect.height)
+
+  Phoenix.log(JSON.stringify(sysPosition))
+
   window.setFrame(sysPosition)
 }
 
@@ -158,7 +175,7 @@ function onPositionWindows() {
 function moveWindowToTargetSpace(target, windowConfig, key) {
   const allSpaces = Space.all()
   const pos = windowConfig.position
-  const display = windowConfig.display
+  //  const display = windowConfig.display
   const spaceIndex = windowConfig.space - 1
 
   var targetSpace = allSpaces[spaceIndex]
@@ -168,9 +185,9 @@ function moveWindowToTargetSpace(target, windowConfig, key) {
   targetSpace.addWindows([target])
 
   if (typeof pos === 'object') {
-    objPosition(target, pos, display)
+    objPosition(target, pos)
   } else {
-    stringPosition(target, pos, display)
+    stringPosition(target, pos)
   }
 
   Storage.set(key, true)
