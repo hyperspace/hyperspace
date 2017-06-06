@@ -11,8 +11,7 @@
     "test": "ava",
     "lint": "eslint index.js",
     "start": "./src/configs/setup.sh && node src/index.js",
-    "watch": "node watcher.js",
-    "precommit": "lint-staged"
+    "watch": "node watcher.js"
   },
   "repository": {
     "type": "git",
