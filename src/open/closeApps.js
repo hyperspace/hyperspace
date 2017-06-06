@@ -6,7 +6,6 @@ const osascript = require('node-osascript')
 const HOME = getHomePath()
 
 module.exports = function closeApps(project) {
-  console.log(project)
   console.log('Closing apps')
   let whiteList = getWhiteList(project)
 
