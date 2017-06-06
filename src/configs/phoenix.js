@@ -37,12 +37,12 @@ function stringPosition(window, sysPosition, display) {
 }
 
 function objPosition(window, sysPosition) {
-  // TODO: avoid ghost window
   const display = window.screen()
   const windowRect = display.flippedFrame()
 
   Phoenix.log(JSON.stringify(windowRect))
   Phoenix.log(JSON.stringify(sysPosition))
+
 
   if (sysPosition.x < windowRect.x || sysPosition.x > windowRect.width) {
     sysPosition.x = windowRect.x
