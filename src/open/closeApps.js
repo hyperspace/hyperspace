@@ -20,6 +20,12 @@ module.exports = function closeApps(project) {
       repeat with i from 1 to (number of items in process_list)
         set this_process to item i of the process_list
         if this_process is not in white_list then
+          tell application this_process
+            try
+              close (every window)
+              delay 0.2
+            end try
+          end tell
           try
             set ThePID to unix id of process this_process
             do shell script "kill -KILL " & ThePID

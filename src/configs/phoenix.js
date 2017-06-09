@@ -9,7 +9,7 @@ Phoenix.set({
 // full, top, bottom, left, right, top-right, top-left bottom-right, bottom-left
 function stringPosition(window, sysPosition, display) {
   // const screens = Screen.all()
-  let goToScreen = window.scren()
+  let goToScreen = window.screen()
 
   if (goToScreen === undefined) goToScreen = Screen.main()
 
@@ -43,13 +43,13 @@ function objPosition(window, sysPosition) {
   Phoenix.log(JSON.stringify(windowRect))
   Phoenix.log(JSON.stringify(sysPosition))
 
-
   if (sysPosition.x < windowRect.x || sysPosition.x > windowRect.width) {
     sysPosition.x = windowRect.x
   }
   if (sysPosition.y < windowRect.y || sysPosition.y > windowRect.height) {
     sysPosition.y = windowRect.y
   }
+
   sysPosition.width = Math.min(sysPosition.width, windowRect.width)
   sysPosition.height = Math.min(sysPosition.height, windowRect.height)
 
@@ -183,6 +183,10 @@ function moveWindowToTargetSpace(target, windowConfig, key) {
 
   currentSpace.removeWindows([target])
   targetSpace.addWindows([target])
+
+  const display = target.screen()
+  const windowRect = display.flippedFrame()
+  Phoenix.log(JSON.stringify(windowRect))
 
   if (typeof pos === 'object') {
     objPosition(target, pos)

@@ -20,7 +20,17 @@
         "https://medium.com/information-architecture/medium-7ddf2ad4bc3"
       ],
       "position": "right",
-      "space": 4,
+      "space": 2,
+      "display": 2
+    },
+    {
+      "app": "Google Chrome",
+      "urls": [
+        "https://www.noisli.com/",
+        "https://medium.com/information-architecture/medium-7ddf2ad4bc3"
+      ],
+      "position": "right",
+      "space": 1,
       "display": 2
     }
   ],
