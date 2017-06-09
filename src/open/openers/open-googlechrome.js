@@ -14,7 +14,7 @@ module.exports = function defaultOpen(window) {
     // command output is in stdout
   })
 
-  if (!window.file) return
+  if (!window.urls) return
 
   let app = window.appPath ? window.appPath : window.name
 
