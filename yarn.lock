@@ -1207,6 +1207,20 @@ husky@^0.13.3:
     is-ci "^1.0.9"
     normalize-path "^1.0.0"
 
+"hyperspace-cli@https://github.com/hyperspace/hyperspace":
+  version "1.0.7"
+  resolved "https://github.com/hyperspace/hyperspace#5819b1d7a7c2ea525c75ee146cd32632003d3d1b"
+  dependencies:
+    chalk "^1.1.3"
+    findhelp "^0.3.0"
+    home-path "^1.0.5"
+    inquirer "^3.0.6"
+    lodash "^4.17.2"
+    minimist "^1.2.0"
+    node-osascript "^1.0.4"
+    open "0.0.5"
+    prettier "^1.2.2"
+
 iconv-lite@0.4.13:
   version "0.4.13"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.13.tgz#1f88aba4ab0b1508e8312acc39345f36e992e2f2"
