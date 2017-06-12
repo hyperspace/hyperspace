@@ -1,6 +1,10 @@
 const open = require('./open')
+const save = require('./save')
+const { projectsDirPath, getAllProjects } = require('lib/projects')
 
-// const project = require('./mocks/project-template.json')
-const project = require('./mocks/project-template-browser.json')
-
-open(project)
+module.exports = {
+  open,
+  save,
+  getAllProjects,
+  projectsDirPath,
+}
