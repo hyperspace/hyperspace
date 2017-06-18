@@ -1,6 +1,6 @@
 # Hyperspace
 
-A JSON Config file to automatically change apps, directory and files from project to project for OSX.
+A JSON Config file to automatically change apps, directories and files from project to project for macOS.
 
 ### Install
 
@@ -56,10 +56,10 @@ npm i -g hyperspace-cli
 ### Roadmap v0.8
 
 - [x] Open apps and files
-- [x] Position apps in the OSX desktop
+- [x] Position apps in the macOS desktop
 - [x] Verify if the number of display exist
-- [x] Verify if the number of OSX spaces exist
-- [x] Generate JSON config from current OSX state
+- [x] Verify if the number of macOS spaces exist
+- [x] Generate JSON config from current macOS state
 - [x] Close all apps
 - [x] Discover app open files
 - [x] Get the open files path
@@ -70,7 +70,7 @@ npm i -g hyperspace-cli
 
 ### Roadmap v1.0
 
-- [ ] Create API to openers and saves
+- [ ] Create openers and savers API
 - [ ] Open Terminal and execute script
 - [ ] Create global configs
 - [ ] Fix bugs
@@ -81,5 +81,5 @@ npm i -g hyperspace-cli
 
 - [ ] App Name dictionary
 - [ ] Clear the desktop saving in a _tempfile
-- [ ] Inject the project files
-- [ ] Storage everthing in the cloud
+- [ ] Inject project files
+- [ ] Store everthing in the cloud
