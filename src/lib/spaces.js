@@ -78,7 +78,7 @@ function getNumberOfSpaces() {
 
 function printError(err) {
   if (err.toString().includes('(-1728)')) {
-    console.log(chalk.red.bold('\nYou need allow accessibility access'))
+    console.log(chalk.red.bold('\nYou need to allow accessibility access'))
     console.log(
       'Go to System Preferences > Security & Privacy > Privacy > Accessibility'
     )
