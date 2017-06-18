@@ -11,26 +11,44 @@ module.exports = {
       return editFile({ project: projectName })
     }
 
-    return askWhatProject()
+    const projects = getAllProjects().map(project =>
+      project.replace('.json', '')
+    )
+
+    if (projects && projects.length > 0) {
+      return askWhatProject()
+    }
+
+    return noProjects()
   },
 }
 
-function askWhatProject() {
-  return getListofProjects().then(editFile)
+function noProjects() {
+  console.log(chalk.yellow('No projects to edit.'))
+  return Promise.resolve()
 }
 
-function getListofProjects() {
+function askWhatProject(projects) {
+  return getListofProjects(projects).then(editFile)
+}
+
+function getListofProjects(projects) {
   console.log('') // Format
   return inquirer.prompt({
     type: 'list',
     name: 'project',
     message: chalk.bold('Edit your destinations'),
-    choices: getAllProjects().map(project => project.replace('.json', '')),
+    choices: projects,
   })
 }
 
 function editFile(res) {
-  return new Promise(function(resolve, reject) {
-    open(`${projectsDirPath}/${res.project}.json`)
+  return new Promise((resolve, reject) => {
+    open(`${projectsDirPath}/${res.project}.json`, function(e) {
+      if (e) {
+        return reject(chalk.yellow(`No project named "${res.project}".`))
+      }
+      resolve()
+    })
   })
 }
