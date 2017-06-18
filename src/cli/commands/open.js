@@ -3,7 +3,7 @@ const chalk = require('chalk')
 const open = require('../../open/index')
 const spawn = require('child_process').spawn
 const path = require('path')
-const { projectsDirPath, getAllProjects } = require('../../lib/projects')
+const { projectsDirPath, getAllProjects } = require('../../index')
 
 module.exports = {
   description: 'Travel to your project',

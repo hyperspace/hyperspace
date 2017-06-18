@@ -2,8 +2,7 @@ const inquirer = require('inquirer')
 const chalk = require('chalk')
 const spawn = require('child_process').spawn
 const path = require('path')
-const { getAllProjects } = require('../../lib/projects')
-const save = require('../../save/index')
+const { save, getAllProjects } = require('../../index')
 
 module.exports = {
   description: 'Save your current open files and apps',

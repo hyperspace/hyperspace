@@ -1,7 +1,7 @@
 const inquirer = require('inquirer')
 const chalk = require('chalk')
 const fs = require('fs')
-const { projectsDirPath, getAllProjects } = require('../../lib/projects')
+const { projectsDirPath, getAllProjects } = require('../../index')
 
 module.exports = {
   description: 'Remove the project of your destination panel',
