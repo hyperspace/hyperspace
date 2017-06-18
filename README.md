@@ -82,4 +82,4 @@ npm i -g hyperspace-cli
 - [ ] App Name dictionary
 - [ ] Clear the desktop saving in a _tempfile
 - [ ] Inject project files
-- [ ] Store everthing in the cloud
+- [ ] Store everything in the cloud
