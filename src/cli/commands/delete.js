@@ -1,7 +1,7 @@
 const inquirer = require('inquirer')
 const chalk = require('chalk')
 const fs = require('fs')
-const { projectsDirPath, getAllProjects } = require('../../lib/projects')
+const { projectsDirPath, getAllProjects } = require('../../index')
 
 module.exports = {
   description: 'Remove the project of your destination panel',
@@ -20,19 +20,19 @@ function askWhatProject() {
 }
 
 function getListofProjects() {
-  console.log('') // Format
   return inquirer.prompt({
     type: 'list',
     name: 'project',
-    message: chalk.bold('Remove your project from the destination panel'),
+    message: chalk.bold('\nRemove your project from the destination panel'),
     choices: getAllProjects().map(project => project.replace('.json', '')),
   })
 }
 
 function deleteFile(res) {
-  return new Promise(function(resolve, reject) {
+  return new Promise(function(resolve) {
     fs.unlinkSync(`${projectsDirPath}/${res.project}.json`)
     console.log('')
     console.log(`Project ${res.project} was removed`)
+    resolve({})
   })
 }

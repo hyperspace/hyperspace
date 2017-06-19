@@ -3,7 +3,7 @@ const { getNumberOfDisplays } = require('../lib/displays')
 const { getNumberOfSpaces, changeToSpace } = require('../lib/spaces')
 const pipeSaver = require('./savers/default.js')
 const flattenDeep = require('lodash/flattenDeep')
-const writeProjectFile = require('./writeProject')
+const { writeProjectFile } = require('../lib/projects')
 
 function save(projectName, description) {
   console.log('Start snapshot process...')
