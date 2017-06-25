@@ -1,9 +1,8 @@
-const osascript = require('node-osascript')
+const runScript = require('./save-sketch.appleScript')
 
 module.exports = function() {
   return new Promise(resolve => {
-    const appleScript = 'tell application "Sketch" to return path of documents'
-    osascript.execute(appleScript, function(err, result, raw) {
+    runScript(null, function(err, result) {
       if (err) {
         resolve(false)
       }
