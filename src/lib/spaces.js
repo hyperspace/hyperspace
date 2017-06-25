@@ -41,7 +41,6 @@ function changeToSpace(display, index) {
   return new Promise((resolve, reject) => {
     appleScripts.changeToSpace({ display, index }, err => {
       if (err) {
-        printError(err)
         return reject(err)
       }
 
@@ -76,4 +75,5 @@ module.exports = {
   changeToSpace,
   getNumberOfSpaces,
   removeSpaces,
+  printError,
 }

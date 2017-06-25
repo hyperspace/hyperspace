@@ -3,6 +3,7 @@ const {
   createSpaces,
   getNumberOfSpaces,
   removeSpaces,
+  printError,
 } = require('../lib/spaces')
 
 module.exports = function createNecessarySpaces(project) {
@@ -29,6 +30,10 @@ module.exports = function createNecessarySpaces(project) {
       .then(() => {
         pressQuit()
         return project
+      })
+      .catch(e => {
+        printError(e)
+        return Promise.reject(e)
       })
   })
 }
