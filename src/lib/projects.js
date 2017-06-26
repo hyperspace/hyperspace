@@ -48,7 +48,7 @@ function writeProjectFile(projectName, description) {
 
     quitPhoenix()
 
-    return Promise.resolve(projectFilePath)
+    return projectFilePath
   }
 }
 
