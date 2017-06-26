@@ -8,7 +8,7 @@
     "hyps": "src/cli/index.js"
   },
   "scripts": {
-    "test": "ava",
+    "test": "jest --watch",
     "lint": "eslint index.js",
     "start": "./src/configs/setup.sh && node src/index.js",
     "watch": "node watcher.js"
@@ -25,6 +25,8 @@
   "homepage": "https://github.com/zehfernandes/hyperspace#readme",
   "devDependencies": {
     "babel-eslint": "^7.2.2",
+    "babel-jest": "^20.0.3",
+    "babel-preset-es2015": "^6.24.1",
     "eslint": "^3.7.1",
     "husky": "^0.13.3",
     "jest": "^19.0.2",
@@ -49,5 +51,8 @@
       "prettier-eslint --prettier.bracketSpacing true --write",
       "git add"
     ]
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "./src/setupTests.js"
   }
 }

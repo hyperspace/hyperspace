@@ -1,11 +1,9 @@
-const osascript = require('node-osascript')
 const flattenDeep = require('lodash/flattenDeep')
+const runScript = require('./save-googlechrome.appleScript')
 
 module.exports = function() {
   return new Promise(resolve => {
-    const appleScript =
-      'tell application "Google Chrome" to return URL of tabs of windows'
-    osascript.execute(appleScript, function(err, result, raw) {
+    runScript(null, function(err, result) {
       if (err) {
         resolve(false)
       }

@@ -1,6 +1,9 @@
-const osascript = require('node-osascript')
 const exec = require('child_process')
-const { pressShortcut } = require('../phoenixTunnel')
+const {
+  quitPhoenix,
+  pressShortcut,
+  positionWaitLoop,
+} = require('../lib/appleScripts')
 
 let loopTimer
 
@@ -19,7 +22,7 @@ function setStorage() {
   loopTimer = setInterval(positionWaitLoop, 2000)
 
   // eslint-disable-next-line
-  let child = exec.spawn('log', [
+  let child = exec.spawn("log", [
     'stream',
     '--style',
     'json',
@@ -30,14 +33,7 @@ function setStorage() {
 
   child.stdout.on('data', function() {
     clearInterval(loopTimer)
-    let appleScript = 'quit application "Phoenix"'
-    osascript.execute(appleScript)
+    quitPhoenix()
     child.kill('SIGKILL')
   })
-}
-
-const positionWaitLoop = () => {
-  let appleScript =
-    'tell application "System Events" to keystroke "p" using {control down, shift down}'
-  osascript.execute(appleScript)
 }

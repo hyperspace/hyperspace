@@ -1,8 +1,9 @@
-const osascript = require('node-osascript')
+const { pressQuit } = require('../lib/appleScripts')
 const {
   createSpaces,
   getNumberOfSpaces,
   removeSpaces,
+  printError,
 } = require('../lib/spaces')
 
 module.exports = function createNecessarySpaces(project) {
@@ -25,10 +26,15 @@ module.exports = function createNecessarySpaces(project) {
       }
     }
 
-    return Promise.all(resolvePromises).then(() => {
-      osascript.execute('tell application "System Events" to key code 53')
-      return project
-    })
+    return Promise.all(resolvePromises)
+      .then(() => {
+        pressQuit()
+        return project
+      })
+      .catch(e => {
+        printError(e)
+        return Promise.reject(e)
+      })
   })
 }
 

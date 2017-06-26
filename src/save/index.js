@@ -1,6 +1,10 @@
 const { getPhoenixData } = require('../phoenixTunnel.js')
 const { getNumberOfDisplays } = require('../lib/displays')
-const { getNumberOfSpaces, changeToSpace } = require('../lib/spaces')
+const {
+  getNumberOfSpaces,
+  changeToSpace,
+  printError,
+} = require('../lib/spaces')
 const pipeSaver = require('./savers/default.js')
 const flattenDeep = require('lodash/flattenDeep')
 const { writeProjectFile } = require('../lib/projects')
@@ -46,8 +50,9 @@ function getAllWindows(numDisplays, numSpaces) {
 }
 
 function getWindowsInSpace(display, spaceIndex) {
-  return changeToSpace(display, spaceIndex).then(() => {
-    return getSpaceWindows()
+  return changeToSpace(display, spaceIndex).then(getSpaceWindows).catch(e => {
+    printError(e)
+    return Promise.reject(e)
   })
 }
 

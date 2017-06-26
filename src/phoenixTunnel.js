@@ -1,12 +1,12 @@
 const exec = require('child_process')
-const osascript = require('node-osascript')
+const { pressShortcut } = require('./lib/appleScripts')
 
-function getPhoenixData({message, keystroke, parse}) {
+function getPhoenixData({ message, keystroke, parse }) {
   return new Promise(resolve => {
     pressShortcut(keystroke)
 
     // eslint-disable-next-line
-    let child = exec.spawn('log', [
+    let child = exec.spawn("log", [
       'stream',
       '--style',
       'json',
@@ -24,12 +24,6 @@ function getPhoenixData({message, keystroke, parse}) {
   })
 }
 
-function pressShortcut(keystroke) {
-  const appleScript = `tell application "System Events" to keystroke "${keystroke}" using {control down, shift down}`
-  osascript.execute(appleScript)
-}
-
 module.exports = {
   getPhoenixData,
-  pressShortcut,
 }

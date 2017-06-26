@@ -4,7 +4,7 @@ const open = require('open')
 const getHomePath = require('home-path')
 const HOME = getHomePath()
 const projectTemplate = require('../configs/template-project.json')
-const osascript = require('node-osascript')
+const { quitPhoenix } = require('./appleScripts')
 
 const projectsDirPath = path.join(HOME, '.config', 'hyperspace')
 
@@ -46,10 +46,9 @@ function writeProjectFile(projectName, description) {
 
     fs.writeFileSync(projectFilePath, JSON.stringify(jsonFile, null, 2))
 
-    let appleScript = 'quit application "Phoenix"'
-    osascript.execute(appleScript)
+    quitPhoenix()
 
-    return Promise.resolve(projectFilePath)
+    return projectFilePath
   }
 }
 
